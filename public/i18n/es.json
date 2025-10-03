@@ -1,112 +1,112 @@
 {
   "login": {
-    "title": "Accede a tu cuenta",
-    "subtitle": "No tienes una cuenta?",
-    "register": "Registrate ahora",
+    "title": "Accede a tu cuenta de MindBridge",
+    "subtitle": "¿Aún no tienes cuenta?",
+    "register": "Regístrate ahora",
     "logIn": "Iniciar sesión",
     "password": "Contraseña",
-    "email": "Correo",
+    "email": "Correo electrónico",
     "back": "Regresar a la página principal"
   },
   "register": {
-    "title": "Crear una cuenta",
-    "subtitle": "Ya tienes una cuenta creada?",
+    "title": "Crea tu cuenta en MindBridge",
+    "subtitle": "¿Ya tienes una cuenta?",
     "logIn": "Iniciar sesión",
-    "Client": "Cliente",
-    "Provider": "Provedor",
+    "Client": "Paciente",
+    "Provider": "Psicólogo",
     "name": "Nombre",
     "last": "Apellido",
-    "email": "Correo",
+    "email": "Correo electrónico",
     "password": "Contraseña",
     "create": "Crear cuenta",
-    "company": "Nombre De Compañia"
+    "company": "Nombre de la Clínica / Centro"
   },
   "dashboard": {
     "home": "Inicio",
     "schedule": "Agenda",
     "hey": "Hola ",
-    "letsWork": "¡Manos a la obra!",
-    "upcoming": "Próximas citas",
+    "letsWork": "¡Listo para apoyar a tus pacientes!",
+    "upcoming": "Próximas sesiones",
     "today": "Hoy",
-    "viewSchedule": "Ver agenda",
-    "ourStaff": "Nuestro Personal",
+    "viewSchedule": "Ver agenda completa",
+    "ourStaff": "Nuestro Equipo",
     "overallScore": "Calificación general:",
-    "reviews": "Reseñas",
-    "services": "Servicios",
-    "subscription": "Subscripción",
-    "manicure": "Manicura",
-    "keratinTreatment": "Tratamiento de keratina",
-    "colorCut": "Color y corte",
-    "bridalHairStylist": "Estilista de novias",
-    "hairExtensionSpecialist": "Especialista en extensiones",
-    "haircutSpecialist": "Especialista en cortes",
-    "stylist": "Estilista"
+    "reviews": "Opiniones de pacientes",
+    "services": "Terapias",
+    "subscription": "Suscripción",
+    "manicure": "Terapia Individual",
+    "keratinTreatment": "Terapia de Pareja",
+    "colorCut": "Sesiones Familiares",
+    "bridalHairStylist": "Apoyo a Adolescentes",
+    "hairExtensionSpecialist": "Terapia Grupal",
+    "haircutSpecialist": "Seguimiento Psiquiátrico",
+    "stylist": "Psicólogo"
   },
   "profile": {
-    "yourProfile": "Tu Perfil:",
+    "yourProfile": "Tu Perfil Profesional:",
     "portfolio": "Portafolio",
     "addPhoto": "+ Añadir Foto",
-    "recentReviews": "Reseñas recientes",
+    "recentReviews": "Opiniones recientes",
     "socials": {
       "instagram": "Instagram",
       "tiktok": "TikTok"
     },
     "rating": "Calificación general:",
-    "reviewsCount": "{{count}} reseñas",
+    "reviewsCount": "{{count}} opiniones",
     "profileImageAlt": "Foto de perfil",
     "coverImageAlt": "Imagen de portada",
-    "addPhotoDescription": "Añade una nueva foto a tu portafolio",
+    "addPhotoDescription": "Añade una nueva foto de tu consultorio o ambiente terapéutico",
     "imageSelectedLog": "Imagen seleccionada:",
     "imageAddedLog": "Imagen añadida al portafolio"
   },
   "favorites": {
-    "bookNow": "Reservar ahora"
+    "bookNow": "Reservar sesión"
   },
   "services": {
     "service": "Servicio",
-    "duration": "Duración",
+    "duration": "Duración de la sesión",
     "price": "Precio",
     "status": "Estado",
     "actions": "Acciones",
-    "settings": "settings"
+    "settings": "Configuraciones"
   },
   "subscription": {
     "currentPlan": "Tu plan actual es: ",
-    "upgrade": "¿Quieres mejorar tu experiencia? Mira estos planes",
+    "upgrade": "¿Deseas ampliar tu consulta? Revisa estos planes",
     "actions": "Acciones",
-    "settings": "settings"
+    "settings": "Configuraciones"
   },
   "client": {
     "appointments": {
-      "salon": "Salón:",
+      "salon": "Psicólogo:",
       "date": "Fecha:",
       "hour": "Hora:",
-      "client": "Cliente:",
+      "client": "Paciente:",
       "payment": "Pagar",
       "reschedule": "Reprogramar",
       "cancel": "Cancelar",
       "tomorrow": "Mañana",
-      "appointments": "Tus Citas",
+      "appointments": "Tus Sesiones",
       "review": "Cuéntanos sobre tu experiencia",
       "excelent": "Excelente",
       "regular": "Regular",
-      "button": "Enviar reseña",
+      "button": "Enviar opinión",
       "bad": "Mala",
       "comment": "Deja un comentario (opcional)",
-      "last": "Última Reseña",
+      "last": "Última opinión",
       "total": "en total",
-      "upcoming": "Próximas citas"
+      "upcoming": "Próximas sesiones"
     },
     "profile": {
       "profile": "Tu Perfil",
       "personal": "Información Personal",
-      "name": "Nombre",
-      "email": "Correo Electrónico",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
       "phone": "Teléfono",
-      "identity": "Documento de Identidad",
-      "notifications": "Activar Notificaciones",
-      "location": "Compartir Ubicación",
-      "password": "Cambiar Contraseña",
+      "identity": "Documento de identidad",
+      "notifications": "Activar notificaciones",
+      "location": "Compartir ubicación",
+      "password": "Cambiar contraseña",
       "account": "Cuenta",
       "change": "Cambiar",
       "logOut": "Cerrar sesión",
@@ -114,15 +114,15 @@
     },
     "sidebar": {
       "home": "Inicio",
-      "appointments": "Citas",
+      "appointments": "Sesiones",
       "favorites": "Mis Favoritos",
       "profile": "Mi Perfil"
     },
     "toolbar": {
-      "search": "Buscar Salón..."
+      "search": "Buscar Psicólogo..."
     },
     "favorites": {
-      "book": "Reservar Ahora"
+      "book": "Reservar sesión"
     }
   }
 }

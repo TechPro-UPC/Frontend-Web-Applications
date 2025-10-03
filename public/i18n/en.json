@@ -1,128 +1,128 @@
 {
   "login": {
-    "title": "Access Your Account",
-    "subtitle": "Don't have and account?",
-    "register": "Register now",
+    "title": "Access Your MindBridge Account",
+    "subtitle": "Don't have an account?",
+    "register": "Join MindBridge",
     "logIn": "Log In",
     "password": "Password",
     "email": "Email",
-    "back": "Back to website"
+    "back": "Back to homepage"
   },
   "register": {
-    "title": "Create an account",
+    "title": "Create your MindBridge account",
     "subtitle": "Already have an account?",
     "logIn": "Log in",
-    "Client": "Client",
-    "Provider": "Provider",
+    "Client": "Patient",
+    "Provider": "Psychologist",
     "name": "First Name",
     "last": "Last Name",
     "email": "Email",
     "password": "Password",
     "create": "Create account",
-    "company": "Full Name Company"
+    "company": "Practice / Institution Name"
   },
   "dashboard": {
     "home": "Home",
-    "schedule": "Schedule",
+    "schedule": "Appointments",
     "hey": "Hey ",
-    "letsWork": "Lets Get to Work!",
-    "upcoming": "Upcoming appointments",
+    "letsWork": "Ready to support your patients today!",
+    "upcoming": "Upcoming sessions",
     "today": "Today",
-    "viewSchedule": "View schedule",
-    "ourStaff": "Our Staff",
-    "overallScore": "Overall score:",
-    "reviews": "Reviews",
-    "services": "Services",
+    "viewSchedule": "View full schedule",
+    "ourStaff": "Our Specialists",
+    "overallScore": "Overall rating:",
+    "reviews": "Patient feedback",
+    "services": "Therapies",
     "subscription": "Subscription",
-    "manicure": "Manicure",
-    "keratinTreatment": "Keratin Treatment",
-    "colorCut": "Color & cut",
-    "bridalHairStylist": "Bridal hair stylist",
-    "hairExtensionSpecialist": "Hair extension specialist",
-    "haircutSpecialist": "Haircut specialist",
-    "stylist": "Stylist"
+    "manicure": "Individual Therapy",
+    "keratinTreatment": "Couples Therapy",
+    "colorCut": "Family Sessions",
+    "bridalHairStylist": "Adolescent Support",
+    "hairExtensionSpecialist": "Group Therapy",
+    "haircutSpecialist": "Psychiatric Follow-up",
+    "stylist": "Psychologist"
   },
   "profile": {
-    "yourProfile": "Your Profile:",
+    "yourProfile": "Your Professional Profile:",
     "portfolio": "Portfolio",
     "addPhoto": "+ Add Photo",
-    "recentReviews": "Recent reviews",
+    "recentReviews": "Recent patient feedback",
     "socials": {
       "instagram": "Instagram",
       "tiktok": "TikTok"
     },
-    "rating": "Overall score:",
+    "rating": "Overall rating:",
     "reviewsCount": "{{count}} reviews",
     "profileImageAlt": "Profile photo",
     "coverImageAlt": "Cover image",
-    "addPhotoDescription": "Add a new photo to your portfolio",
+    "addPhotoDescription": "Add a new photo of your office or session environment",
     "imageSelectedLog": "Image selected:",
     "imageAddedLog": "Image added to portfolio"
   },
   "favorites": {
-    "bookNow": "Book now"
+    "bookNow": "Book session"
   },
   "services": {
     "service": "Service",
-    "duration": "Duration",
+    "duration": "Session Duration",
     "price": "Price",
     "status": "Status",
     "actions": "Actions",
-    "settings": "settings"
+    "settings": "Settings"
   },
   "subscription": {
     "currentPlan": "Your current plan is: ",
-    "upgrade": "Wanna upgrade? Check out these plans",
+    "upgrade": "Looking to expand your practice? Check these plans",
     "actions": "Actions",
-    "settings": "settings"
+    "settings": "Settings"
   },
   "client": {
     "appointments": {
-      "salon": "Salon:",
+      "salon": "Psychologist:",
       "date": "Date:",
       "hour": "Hour:",
-      "client": "Client:",
+      "client": "Patient:",
       "payment": "Pay",
       "reschedule": "Reschedule",
       "cancel": "Cancel",
       "tomorrow": "Tomorrow",
-      "appointments": "Your Appointments",
-      "review": "Tell us about your experience",
-      "excelent": "Excelent",
-      "regular": "Regular",
+      "appointments": "Your Sessions",
+      "review": "Share your experience",
+      "excelent": "Excellent",
+      "regular": "Average",
       "button": "Send review",
-      "bad": "Bad",
-      "comment": "Leave a message(optional)",
-      "last": "Last Review",
+      "bad": "Not good",
+      "comment": "Leave a message (optional)",
+      "last": "Last Feedback",
       "total": "in total",
-      "upcoming": "Upcoming Appointments"
+      "upcoming": "Upcoming Sessions"
     },
     "profile": {
       "profile": "Your Profile",
       "personal": "Personal Information",
-      "name": "Name",
+      "name": "Full Name",
       "email": "Email",
       "phone": "Phone",
-      "identity": "Identity Document",
+      "identity": "ID Document",
       "notifications": "Enable Notifications",
       "location": "Share Location",
       "password": "Change Password",
       "account": "Account",
-      "change" : "Change",
+      "change": "Change",
       "logOut": "Logout",
       "delete": "Delete Account"
     },
     "sidebar": {
       "home": "Home",
-      "appointments": "Appointments",
-      "favorites": "My favorites",
-      "profile": "My profile"
+      "appointments": "Sessions",
+      "favorites": "My Favorites",
+      "profile": "My Profile"
     },
     "toolbar": {
-      "search": "Search Salon..."
+      "search": "Search Psychologist..."
     },
     "favorites": {
-      "book": "Book Now"
+      "book": "Book Session"
     }
   }
 }

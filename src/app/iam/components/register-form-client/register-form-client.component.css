@@ -8,7 +8,7 @@
 .register-container {
   width: 100%;
   max-width: 400px;
-  color: #333;                  /* Texto oscuro */
+  color: #1f2340;                  /* Texto oscuro (indigo profundo) */
   border-radius: 10px;
   padding: 2rem;
 }
@@ -21,12 +21,12 @@
 .subtitle {
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
-  color: #666 !important;
+  color: #7c84a6 !important;       /* Texto secundario */
 }
 
 .login-link {
   font-weight: bold !important;
-  color: #731c9f !important;
+  color: #6e4aff !important;       /* Morado MindBridge */
   text-decoration: none;
 }
 
@@ -50,7 +50,7 @@
 
 .register-button {
   width: 100%;
-  background-color: #731c9f !important;
+  background-color: #6e4aff !important; /* Morado MindBridge */
   color: white !important;
   margin-top: 1.5rem;
 }
@@ -58,7 +58,7 @@
 .divider {
   text-align: center;
   margin: 1rem 0;
-  color: #aaa;
+  color: #a3aed0;                  /* Divider suave */
 }
 
 .social-buttons {
