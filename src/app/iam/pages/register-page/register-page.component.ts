@@ -28,9 +28,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 export class RegisterPageComponent implements OnInit, OnDestroy, AfterViewInit {
   isProvider: boolean = false;
   slideImages: string[] = [
-    'https://www.gammabross.com/Gallery/salonimg-frkqkj-181.webp',
-    'https://thehappening.com/wp-content/uploads/2024/02/captura-de-pantalla-2023-05-17-a-la-s-52813-pm-1.jpg',
-    'https://cdn1.treatwell.net/images/view/v2.i7379851.w720.h480.x5F15B4CB/'
+    'https://img.freepik.com/free-photo/mid-shot-woman-therapist-with-clipboard_23-2148759113.jpg?semt=ais_hybrid&w=740&q=80',
+    'https://www.sacap.edu.za/wp-content/uploads/2022/06/clinical-psychologist-sacap.jpg',
+    'https://media.voguearabia.com/photos/67c597e93d8274bba86f3f7b/1:1/w_1920,c_limit/490366172'
   ];
 
   activeIndex: number = 0;
