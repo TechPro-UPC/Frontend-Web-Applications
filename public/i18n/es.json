@@ -110,7 +110,10 @@
       "account": "Cuenta",
       "change": "Cambiar",
       "logOut": "Cerrar sesión",
-      "delete": "Eliminar cuenta"
+      "delete": "Eliminar cuenta",
+      "complaints": "Quejas y reclamos",
+      "complaintsCta": "Preguntas frecuentes y reclamos",
+      "complaintsDesc": "Encuentra respuestas a preguntas comunes o registra un reclamo."
     },
     "sidebar": {
       "home": "Inicio",

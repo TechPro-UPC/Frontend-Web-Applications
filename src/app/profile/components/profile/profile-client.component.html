@@ -89,6 +89,16 @@
       </form>
     </section>
 
+    <!-- Quejas y Reclamos -->
+    <section class="section">
+      <h2> {{ 'client.profile.complaints' | translate }}</h2>
+      Futuro: botón para FAQ y generación de reclamos
+      <button mat-stroked-button color="primary" routerLink="/soporte/quejas-reclamos" aria-label="ir a quejas y reclamos">
+        <mat-icon>help_center</mat-icon>
+        Preguntas frecuentes y reclamos
+      </button>
+    </section>
+
     <section class="section danger">
       <h2>⚠️ {{'client.profile.account' | translate}} </h2>
       <div class="account-actions">

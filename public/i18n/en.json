@@ -110,7 +110,10 @@
       "account": "Account",
       "change": "Change",
       "logOut": "Logout",
-      "delete": "Delete Account"
+      "delete": "Delete Account",
+      "complaints": "Complaints & Claims",
+      "complaintsCta": "FAQs and File a Claim",
+      "complaintsDesc": "Find answers to common questions or file a claim."
     },
     "sidebar": {
       "home": "Home",
