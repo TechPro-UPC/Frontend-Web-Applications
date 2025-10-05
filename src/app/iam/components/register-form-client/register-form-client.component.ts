@@ -7,6 +7,7 @@ import { AccountApiService, SignUpPayload, UserResource } from '../../services/a
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-register-form-client',
@@ -19,7 +20,8 @@ import { MatButton } from '@angular/material/button';
     MatButton,
     MatLabel,
     RouterLink,
-    TranslatePipe
+    TranslatePipe,
+    NgOptimizedImage
   ],
   templateUrl: './register-form-client.component.html',
   styleUrl: './register-form-client.component.css'
