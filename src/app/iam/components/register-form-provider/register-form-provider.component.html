@@ -9,8 +9,8 @@
     </p>
 
     <mat-form-field appearance="fill" class="full-width">
-      <mat-label>{{ 'register.company' | translate }}</mat-label>
-      <input matInput formControlName="companyName" type="text" />
+      <mat-label>{{ 'register.number' | translate }}</mat-label>
+      <input matInput formControlName="numColegiado" type="text" />
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
@@ -23,8 +23,21 @@
       <input matInput formControlName="password" type="password" />
     </mat-form-field>
 
-    <button mat-raised-button color="primary" class="register-button" type="submit">
+    <!-- Checkbox de Términos -->
+    <mat-checkbox formControlName="acceptTerms" class="full-width">
+      He leído y acepto los
+      <a routerLink="/legal/terms" (click)="$event.stopPropagation()">Términos y Condiciones</a>
+      y la
+      <a routerLink="/legal/privacy" (click)="$event.stopPropagation()">Política de Privacidad</a>.
+    </mat-checkbox>
+    <div class="error" *ngIf="registerForm.get('acceptTerms')?.touched && registerForm.get('acceptTerms')?.hasError('required')">
+      Debes aceptar los términos para continuar.
+    </div>
+
+    <button mat-raised-button color="primary" class="register-button" type="submit"
+            [disabled]="registerForm.invalid || registerForm.pending">
       Create account
     </button>
+
   </div>
 </form>

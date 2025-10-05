@@ -19,7 +19,7 @@
     "email": "Correo electrónico",
     "password": "Contraseña",
     "create": "Crear cuenta",
-    "company": "Nombre de la Clínica / Centro"
+    "number": "Número de colegiatura"
   },
   "dashboard": {
     "home": "Inicio",

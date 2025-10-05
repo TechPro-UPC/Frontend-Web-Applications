@@ -50,7 +50,7 @@ export class RegisterFormClientComponent {
     const payload: SignUpPayload = {
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
-      companyName: '', // Not needed for client
+      numColegiado: '', // Not needed for client
       type: 'client'
     };
 

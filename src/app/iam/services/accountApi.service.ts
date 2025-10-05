@@ -16,7 +16,7 @@ export interface SignInPayload {
 export interface SignUpPayload {
   email: string;
   password: string;
-  companyName: string;
+  numColegiado: string;
   type: 'provider' | 'client';
 
 }
@@ -97,8 +97,8 @@ export class AccountApiService extends BaseService<AccountResponse> {
       )
     );
   }
-  public createProvider(companyName: string, userId: number): Observable<any> {
-    const payload = { companyName, userId };
+  public createProvider(numeroColegiado: string, userId: number): Observable<any> {
+    const payload = { numeroColegiado, userId };
     return this.http.post(`${this.serverBaseUrl}/providers`, payload);
   }
 

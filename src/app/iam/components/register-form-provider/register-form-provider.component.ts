@@ -7,6 +7,7 @@ import { AccountApiService, SignUpPayload, UserResource } from '../../services/a
 import { TranslatePipe } from '@ngx-translate/core';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
+import {MatCheckbox} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-register-form-provider',
@@ -19,7 +20,8 @@ import {MatButton} from '@angular/material/button';
     MatButton,
     MatLabel,
     RouterLink,
-    TranslatePipe
+    TranslatePipe,
+    MatCheckbox
   ],
   templateUrl: './register-form-provider.component.html',
   styleUrl: './register-form-provider.component.css'
@@ -35,7 +37,7 @@ export class RegisterFormProviderComponent {
     private accountService: AccountApiService
   ) {
     this.registerForm = this.fb.group({
-      companyName: ['', Validators.required],
+      numColegiado: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
@@ -54,7 +56,7 @@ export class RegisterFormProviderComponent {
 
     this.accountService.signUp(payload).subscribe({
       next: (user: UserResource) => {
-        this.accountService.createProvider(payload.companyName, user.id).subscribe({
+        this.accountService.createProvider(payload.numColegiado, user.id).subscribe({
           next: () => {
             this.snackBar.open('Account created successfully!', 'Close', {
               duration: 3000,

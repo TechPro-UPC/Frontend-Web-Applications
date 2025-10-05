@@ -19,7 +19,7 @@
     "email": "Email",
     "password": "Password",
     "create": "Create account",
-    "company": "Practice / Institution Name"
+    "number": "Professional license number"
   },
   "dashboard": {
     "home": "Home",
