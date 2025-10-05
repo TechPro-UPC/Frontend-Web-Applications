@@ -19,7 +19,39 @@
     "email": "Email",
     "password": "Password",
     "create": "Create account",
-    "number": "Professional license number"
+    "number": "Professional license number",
+    "termsPrefix": "I have read and accept the",
+    "and": "and the",
+    "acceptTermsError": "You must accept the terms to continue."
+  },
+  "common": {
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "acceptTerms": {
+    "termsAndConditions": "Terms & Conditions",
+    "privacyPolicy": "Privacy Policy"
+  },
+  "legal": {
+    "terms": {
+      "title": "Terms & Conditions",
+      "p1": "These Terms govern the provision of psychological services through the platform. By continuing you accept these Terms and the applicable Peruvian framework, including Law No. 29414 (2009) on patients’ rights.",
+      "p2": "Informed consent will be presented before care. It explains scope, risks and limitations (including remote care), confidentiality and its legal limits, and personal/clinical data processing. Your acceptance is recorded.",
+      "p3": "Professional duties and ethics. The psychologist declares to be duly licensed and agrees to comply with the Code of Ethics and Deontology of the Peruvian College of Psychologists (2018), acting with competence, integrity and respect for users’ rights under Law No. 29414.",
+      "p4": "Data protection and traceability. Personal and clinical data are confidential and processed under Law No. 29733. Access is restricted to care purposes. The platform keeps logs of access and changes (date/time, user/IP, consent version) for security and compliance. Data subject rights may be exercised through the available channels.",
+      "p5": "The platform is not an emergency service. In cases of imminent risk to the user or third parties, the professional may activate assistance or referrals in line with the Code of Ethics and applicable law. The platform provides technological tools but does not replace professional judgment."
+    },
+  "privacy": {
+      "title": "Privacy Policy",
+      "p6": "Data we process. Identification and contact data; account data (credentials stored securely), professional information; service usage and activity logs; and, only when strictly necessary for psychological care, clinical/sensitive data (e.g., reason for consultation, progress notes), handled with reinforced safeguards.",
+      "p7": "Consent. Where the law requires express consent (e.g., sensitive data), we will request it and record date/time, user and version accepted. You may withdraw consent at any time without retroactive effect on processing already performed to provide care or comply with the law.",
+      "p8": "Retention. We keep personal data only for as long as necessary to fulfill the stated purposes. Clinical/medical records are retained according to applicable health regulations and our retention policy. After the retention period, we securely delete or anonymize data.",
+      "p9": "Minors and vulnerable persons. If the user is a minor, registration and access must be made through the parent/guardian’s account; the parent/guardian is the holder of the contractual relationship. Where applicable, we obtain authorization from a parent/guardian or legal representative and apply additional safeguards in line with the Code of Ethics and health regulations."
+    },
+  "code": {
+      "title": "Peruvian Psychologists’ Code of Ethics and Deontology",
+      "p10": "By continuing, I confirm I am licensed and undertake to comply with the Peruvian College of Psychologists’ Code of Ethics and Deontology (Resolution No. 190-2018-CDN-C.PsP), upholding respect for human dignity and autonomy, professional competence, confidentiality and professional secrecy, truthful records and reports, the ban on deceptive advertising, and prioritizing the superior rights and interests of the person attended."
+    }
   },
   "dashboard": {
     "home": "Home",
@@ -88,7 +120,7 @@
       "tomorrow": "Tomorrow",
       "appointments": "Your Sessions",
       "review": "Share your experience",
-      "excelent": "Excellent",
+      "excellent": "Excellent",
       "regular": "Average",
       "button": "Send review",
       "bad": "Not good",

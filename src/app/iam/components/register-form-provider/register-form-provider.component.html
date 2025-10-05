@@ -23,21 +23,30 @@
       <input matInput formControlName="password" type="password" />
     </mat-form-field>
 
-    <!-- Checkbox de Términos -->
     <mat-checkbox formControlName="acceptTerms" class="full-width">
-      He leído y acepto los
-      <a routerLink="/legal/terms" (click)="$event.stopPropagation()">Términos y Condiciones</a>
-      y la
-      <a routerLink="/legal/privacy" (click)="$event.stopPropagation()">Política de Privacidad</a>.
+      {{ 'register.termsPrefix' | translate }}
+      <a href="#" class="link-like" (click)="openLegal($event, 'terms')">
+        {{ 'legal.terms.title' | translate }}
+      </a>,
+      <a href="#" class="link-like" (click)="openLegal($event, 'privacy')">
+        {{ 'legal.privacy.title' | translate }}
+      </a>
+      {{ 'register.and' | translate }}
+      <a href="#" class="link-like" (click)="openLegal($event, 'code')">
+        {{ 'legal.code.title' | translate }}
+      </a>.
     </mat-checkbox>
-    <div class="error" *ngIf="registerForm.get('acceptTerms')?.touched && registerForm.get('acceptTerms')?.hasError('required')">
-      Debes aceptar los términos para continuar.
+
+    <div class="error"
+         role="alert"
+         aria-live="polite"
+         *ngIf="registerForm.get('acceptTerms')?.touched && registerForm.get('acceptTerms')?.hasError('required')">
+      {{ 'register.acceptTermsError' | translate }}
     </div>
 
     <button mat-raised-button color="primary" class="register-button" type="submit"
             [disabled]="registerForm.invalid || registerForm.pending">
       Create account
     </button>
-
   </div>
 </form>

@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>{{ 'legal.terms.title' | translate }}</h2>
+
+<mat-dialog-content style="max-height:60vh; overflow:auto">
+  <p>{{ 'legal.terms.p1' | translate }}</p>
+  <p>{{ 'legal.terms.p2' | translate }}</p>
+  <p>{{ 'legal.terms.p3' | translate }}</p>
+  <p>{{ 'legal.terms.p4' | translate }}</p>
+  <p>{{ 'legal.terms.p5' | translate }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close="false">{{ 'common.decline' | translate }}</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">{{ 'common.accept' | translate }}</button>
+</mat-dialog-actions>

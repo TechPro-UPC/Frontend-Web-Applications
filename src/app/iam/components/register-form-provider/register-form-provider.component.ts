@@ -5,9 +5,16 @@ import { Router, RouterLink } from '@angular/router';
 import { AccountApiService, SignUpPayload, UserResource } from '../../services/accountApi.service';
 
 import { TranslatePipe } from '@ngx-translate/core';
-import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
-import {MatButton} from '@angular/material/button';
-import {MatCheckbox} from '@angular/material/checkbox';
+import { MatFormField, MatInput, MatLabel } from '@angular/material/input'; // (deja como lo tienes)
+import { MatButton } from '@angular/material/button';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+
+// Modales (ajusta rutas si tu árbol difiere)
+import {TermsandconditionsModalComponent} from '../termsandconditions-modal/termsandconditions-modal.component';
+import {NgIf} from '@angular/common';
+import {PrivacyPolicyModalComponent} from '../privacypolicy-modal/privacypolicy-modal.component';
+import {CodeModalComponent} from '../code-modal/code-modal.component';
 
 @Component({
   selector: 'app-register-form-provider',
@@ -19,27 +26,56 @@ import {MatCheckbox} from '@angular/material/checkbox';
     MatInput,
     MatButton,
     MatLabel,
+    MatCheckbox,
+    MatDialogModule,
     RouterLink,
     TranslatePipe,
-    MatCheckbox
+    NgIf,
   ],
   templateUrl: './register-form-provider.component.html',
-  styleUrl: './register-form-provider.component.css'
+  styleUrls: ['./register-form-provider.component.css']
 })
 export class RegisterFormProviderComponent {
   registerForm: FormGroup;
-  isProvider: boolean = true;
+  isProvider = true;
 
   constructor(
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private router: Router,
-    private accountService: AccountApiService
+    private accountService: AccountApiService,
+    private dialog: MatDialog
   ) {
     this.registerForm = this.fb.group({
       numColegiado: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      acceptTerms: [false, Validators.requiredTrue]
+    });
+  }
+
+  /**
+   * Abre el modal correspondiente.
+   * which = 'terms' -> abre Términos; si el usuario acepta, marca el checkbox acceptTerms.
+   * which = 'privacy' -> abre Privacidad (no marca el checkbox).
+   */
+  openLegal(ev: Event, which: 'terms'|'privacy'|'code') {
+    ev.preventDefault(); ev.stopPropagation();
+
+    let comp: any;
+    switch (which) {
+      case 'terms':   comp = TermsandconditionsModalComponent; break;
+      case 'privacy': comp = PrivacyPolicyModalComponent;     break;
+      case 'code':    comp = CodeModalComponent;              break;
+      default: return;
+    }
+
+    this.dialog.open(comp, { width: '720px', maxWidth: '96vw' })
+      .afterClosed().subscribe(accepted => {
+      if (which === 'terms' && accepted) {
+        this.registerForm.get('acceptTerms')?.setValue(true);
+        this.registerForm.get('acceptTerms')?.markAsTouched();
+      }
     });
   }
 

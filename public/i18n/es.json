@@ -19,7 +19,39 @@
     "email": "Correo electrónico",
     "password": "Contraseña",
     "create": "Crear cuenta",
-    "number": "Número de colegiatura"
+    "number": "Número de colegiatura",
+    "termsPrefix": "He leído y acepto los",
+    "and": "y la",
+    "acceptTermsError": "Debes aceptar los términos para continuar."
+  },
+  "common": {
+    "accept": "Aceptar",
+    "decline": "Declinar"
+  },
+  "acceptTerms": {
+    "termsAndConditions": "Términos y Condiciones",
+    "privacyPolicy": "Política de Privacidad"
+  },
+  "legal": {
+    "terms": {
+      "title": "Términos y Condiciones",
+      "p1": "Estos Términos regulan la prestación de servicios psicológicos a través de la plataforma. Al continuar, aceptas estos Términos y el marco normativo peruano aplicable, incluida la Ley N.° 29414 (2009) sobre derechos de las personas usuarias de los servicios de salud.",
+      "p2": "Antes de iniciar la atención se presentará el consentimiento informado. Este detalla alcances, riesgos y limitaciones (incluida la modalidad remota), confidencialidad y sus límites legales, así como el tratamiento de datos personales y clínicos. Tu aceptación queda registrada.",
+      "p3": "Deberes y ética profesional. El psicólogo declara estar debidamente colegiado y se compromete a cumplir el Código de Ética y Deontología del Colegio de Psicólogos del Perú (2018), actuando con competencia, integridad y respeto de los derechos del usuario conforme a la Ley N.° 29414.",
+      "p4": "Protección de datos y trazabilidad. Los datos personales y clínicos son confidenciales y se tratan conforme a la Ley N.° 29733. El acceso se limita a fines asistenciales. La plataforma conserva registros de accesos y cambios (fecha/hora, usuario/IP, versión del consentimiento) para seguridad y cumplimiento. El titular puede ejercer sus derechos por los canales habilitados.",
+      "p5": "La plataforma no es un servicio de emergencia. Ante riesgo inminente para la persona usuaria o terceros, el profesional podrá activar medidas de ayuda o derivación según el Código de Ética y la normativa vigente. La plataforma brinda herramientas tecnológicas, pero no sustituye el juicio profesional."
+    },
+    "privacy": {
+      "title": "Política de Privacidad",
+      "p6": "Datos que tratamos. Datos de identificación y contacto; datos de cuenta (credenciales almacenadas de forma segura), información profesional; uso del servicio y registros de actividad; y, solo cuando sea estrictamente necesario para la atención psicológica, datos clínicos/sensibles (p. ej., motivo de consulta, notas de evolución), tratados con salvaguardas reforzadas.",
+      "p7": "Consentimiento. Cuando la ley exija consentimiento expreso (p. ej., datos sensibles), lo solicitaremos y dejaremos constancia de fecha/hora, usuario y versión aceptada. Puedes retirarlo en cualquier momento sin efecto retroactivo sobre tratamientos ya realizados para prestar la atención o cumplir la ley.",
+      "p8": "Conservación. Conservamos los datos personales únicamente por el tiempo necesario para las finalidades indicadas. La documentación/registro clínico se retiene conforme a la normativa sanitaria aplicable y a nuestra política de retención. Vencidos los plazos, eliminamos o anonimizamos de forma segura.",
+      "p9": "Menores de edad y poblaciones vulnerables. Si el usuario es menor de edad, el registro y el acceso deben realizarse a través de la cuenta del padre/madre/tutor; el padre/madre/tutor es el titular de la relación contractual. Cuando corresponda, obtenemos la autorización del padre/madre/tutor o representante legal y aplicamos salvaguardas adicionales conforme al Código de Ética y la normativa sanitaria."
+    },
+    "code": {
+      "title": "Código de Ética y Deontología del Colegio de Psicólogos del Perú",
+      "p10": "Al continuar, declaro estar colegiado y hábil y me comprometo a cumplir el Código de Ética y Deontología del Colegio de Psicólogos del Perú (Resolución N.° 190-2018-CDN-C.PsP), observando el respeto a la dignidad y autonomía de la persona, la competencia profesional, la confidencialidad y el secreto profesional, la veracidad en historiales e informes, la prohibición de publicidad engañosa y la preferencia por los derechos e intereses superiores de la persona atendida."
+    }
   },
   "dashboard": {
     "home": "Inicio",
