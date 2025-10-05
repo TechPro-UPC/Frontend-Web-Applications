@@ -16,9 +16,8 @@ export interface SignInPayload {
 export interface SignUpPayload {
   email: string;
   password: string;
-  numColegiado: string;
+  numLicense: number;
   type: 'provider' | 'client';
-
 }
 
 
@@ -78,7 +77,7 @@ export class AccountApiService extends BaseService<AccountResponse> {
     localStorage.removeItem('jwt_token');
   }
 
-  isProvider(userId: number) {                       // ← devuelve Provider | null
+  isProvider(userId: number) {
     return this.http.get<Provider>(
       `${this.serverBaseUrl}/providers/user/${userId}`, this.httpOptions
     ).pipe(
@@ -97,8 +96,8 @@ export class AccountApiService extends BaseService<AccountResponse> {
       )
     );
   }
-  public createProvider(numeroColegiado: string, userId: number): Observable<any> {
-    const payload = { numeroColegiado, userId };
+  public createProvider(licenseNumber: number, userId: number) {
+    const payload = { licenseNumber, userId };
     return this.http.post(`${this.serverBaseUrl}/providers`, payload);
   }
 

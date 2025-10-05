@@ -47,18 +47,16 @@ export class RegisterFormProviderComponent {
     private dialog: MatDialog
   ) {
     this.registerForm = this.fb.group({
-      numColegiado: ['', Validators.required],
+      numLicense: ['', [
+        Validators.required,
+        Validators.pattern(/^\d+$/)
+      ]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       acceptTerms: [false, Validators.requiredTrue]
     });
   }
 
-  /**
-   * Abre el modal correspondiente.
-   * which = 'terms' -> abre Términos; si el usuario acepta, marca el checkbox acceptTerms.
-   * which = 'privacy' -> abre Privacidad (no marca el checkbox).
-   */
   openLegal(ev: Event, which: 'terms'|'privacy'|'code') {
     ev.preventDefault(); ev.stopPropagation();
 
@@ -92,7 +90,7 @@ export class RegisterFormProviderComponent {
 
     this.accountService.signUp(payload).subscribe({
       next: (user: UserResource) => {
-        this.accountService.createProvider(payload.numColegiado, user.id).subscribe({
+        this.accountService.createProvider(payload.numLicense, user.id).subscribe({
           next: () => {
             this.snackBar.open('Account created successfully!', 'Close', {
               duration: 3000,
