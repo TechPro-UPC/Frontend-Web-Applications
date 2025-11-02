@@ -1,0 +1,131 @@
+{
+  "login": {
+    "title": "Accede a tu cuenta de MindBridge",
+    "subtitle": "¿Aún no tienes cuenta?",
+    "register": "Regístrate ahora",
+    "logIn": "Iniciar sesión",
+    "password": "Contraseña",
+    "email": "Correo electrónico",
+    "back": "Regresar a la página principal"
+  },
+  "register": {
+    "title": "Crea tu cuenta en MindBridge",
+    "subtitle": "¿Ya tienes una cuenta?",
+    "logIn": "Iniciar sesión",
+    "Client": "Paciente",
+    "Provider": "Psicólogo",
+    "name": "Nombre",
+    "last": "Apellido",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "create": "Crear cuenta",
+    "company": "Nombre de la Clínica / Centro"
+  },
+  "dashboard": {
+    "home": "Inicio",
+    "schedule": "Agenda",
+    "hey": "Hola ",
+    "letsWork": "¡Listo para apoyar a tus pacientes!",
+    "upcoming": "Próximas sesiones",
+    "today": "Hoy",
+    "viewSchedule": "Ver agenda completa",
+    "ourStaff": "Nuestro Equipo",
+    "overallScore": "Calificación general:",
+    "reviews": "Opiniones de pacientes",
+    "services": "Terapias",
+    "subscription": "Suscripción",
+    "manicure": "Terapia Individual",
+    "keratinTreatment": "Terapia de Pareja",
+    "colorCut": "Sesiones Familiares",
+    "bridalHairStylist": "Apoyo a Adolescentes",
+    "hairExtensionSpecialist": "Terapia Grupal",
+    "haircutSpecialist": "Seguimiento Psiquiátrico",
+    "stylist": "Psicólogo"
+  },
+  "profile": {
+    "yourProfile": "Tu Perfil Profesional:",
+    "portfolio": "Portafolio",
+    "addPhoto": "+ Añadir Foto",
+    "recentReviews": "Opiniones recientes",
+    "socials": {
+      "instagram": "Instagram",
+      "tiktok": "TikTok"
+    },
+    "rating": "Calificación general:",
+    "reviewsCount": "{{count}} opiniones",
+    "profileImageAlt": "Foto de perfil",
+    "coverImageAlt": "Imagen de portada",
+    "addPhotoDescription": "Añade una nueva foto de tu consultorio o ambiente terapéutico",
+    "imageSelectedLog": "Imagen seleccionada:",
+    "imageAddedLog": "Imagen añadida al portafolio"
+  },
+  "favorites": {
+    "bookNow": "Reservar sesión"
+  },
+  "services": {
+    "service": "Servicio",
+    "duration": "Duración de la sesión",
+    "price": "Precio",
+    "status": "Estado",
+    "actions": "Acciones",
+    "settings": "Configuraciones"
+  },
+  "subscription": {
+    "currentPlan": "Tu plan actual es: ",
+    "upgrade": "¿Deseas ampliar tu consulta? Revisa estos planes",
+    "actions": "Acciones",
+    "settings": "Configuraciones"
+  },
+  "client": {
+    "appointments": {
+      "salon": "Psicólogo:",
+      "date": "Fecha:",
+      "hour": "Hora:",
+      "client": "Paciente:",
+      "payment": "Pagar",
+      "reschedule": "Reprogramar",
+      "cancel": "Cancelar",
+      "tomorrow": "Mañana",
+      "appointments": "Tus Sesiones",
+      "review": "Cuéntanos sobre tu experiencia",
+      "excelent": "Excelente",
+      "regular": "Regular",
+      "button": "Enviar opinión",
+      "bad": "Mala",
+      "comment": "Deja un comentario (opcional)",
+      "last": "Última opinión",
+      "total": "en total",
+      "upcoming": "Próximas sesiones"
+    },
+    "profile": {
+      "profile": "Tu Perfil",
+      "personal": "Información Personal",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "identity": "Documento de identidad",
+      "notifications": "Activar notificaciones",
+      "location": "Compartir ubicación",
+      "password": "Cambiar contraseña",
+      "account": "Cuenta",
+      "change": "Cambiar",
+      "logOut": "Cerrar sesión",
+      "delete": "Eliminar cuenta",
+      "complaints": "Quejas y reclamos",
+      "complaintsCta": "Preguntas frecuentes y reclamos",
+      "complaintsDesc": "Encuentra respuestas a preguntas comunes o registra un reclamo."
+    },
+    "sidebar": {
+      "home": "Inicio",
+      "appointments": "Sesiones",
+      "favorites": "Mis Favoritos",
+      "profile": "Mi Perfil"
+    },
+    "toolbar": {
+      "search": "Buscar Psicólogo..."
+    },
+    "favorites": {
+      "book": "Reservar sesión"
+    }
+  }
+}

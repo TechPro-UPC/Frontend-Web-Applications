@@ -1,0 +1,131 @@
+{
+  "login": {
+    "title": "Access Your MindBridge Account",
+    "subtitle": "Don't have an account?",
+    "register": "Join MindBridge",
+    "logIn": "Log In",
+    "password": "Password",
+    "email": "Email",
+    "back": "Back to homepage"
+  },
+  "register": {
+    "title": "Create your MindBridge account",
+    "subtitle": "Already have an account?",
+    "logIn": "Log in",
+    "Client": "Patient",
+    "Provider": "Psychologist",
+    "name": "First Name",
+    "last": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "create": "Create account",
+    "company": "Practice / Institution Name"
+  },
+  "dashboard": {
+    "home": "Home",
+    "schedule": "Appointments",
+    "hey": "Hey ",
+    "letsWork": "Ready to support your patients today!",
+    "upcoming": "Upcoming sessions",
+    "today": "Today",
+    "viewSchedule": "View full schedule",
+    "ourStaff": "Our Specialists",
+    "overallScore": "Overall rating:",
+    "reviews": "Patient feedback",
+    "services": "Therapies",
+    "subscription": "Subscription",
+    "manicure": "Individual Therapy",
+    "keratinTreatment": "Couples Therapy",
+    "colorCut": "Family Sessions",
+    "bridalHairStylist": "Adolescent Support",
+    "hairExtensionSpecialist": "Group Therapy",
+    "haircutSpecialist": "Psychiatric Follow-up",
+    "stylist": "Psychologist"
+  },
+  "profile": {
+    "yourProfile": "Your Professional Profile:",
+    "portfolio": "Portfolio",
+    "addPhoto": "+ Add Photo",
+    "recentReviews": "Recent patient feedback",
+    "socials": {
+      "instagram": "Instagram",
+      "tiktok": "TikTok"
+    },
+    "rating": "Overall rating:",
+    "reviewsCount": "{{count}} reviews",
+    "profileImageAlt": "Profile photo",
+    "coverImageAlt": "Cover image",
+    "addPhotoDescription": "Add a new photo of your office or session environment",
+    "imageSelectedLog": "Image selected:",
+    "imageAddedLog": "Image added to portfolio"
+  },
+  "favorites": {
+    "bookNow": "Book session"
+  },
+  "services": {
+    "service": "Service",
+    "duration": "Session Duration",
+    "price": "Price",
+    "status": "Status",
+    "actions": "Actions",
+    "settings": "Settings"
+  },
+  "subscription": {
+    "currentPlan": "Your current plan is: ",
+    "upgrade": "Looking to expand your practice? Check these plans",
+    "actions": "Actions",
+    "settings": "Settings"
+  },
+  "client": {
+    "appointments": {
+      "salon": "Psychologist:",
+      "date": "Date:",
+      "hour": "Hour:",
+      "client": "Patient:",
+      "payment": "Pay",
+      "reschedule": "Reschedule",
+      "cancel": "Cancel",
+      "tomorrow": "Tomorrow",
+      "appointments": "Your Sessions",
+      "review": "Share your experience",
+      "excelent": "Excellent",
+      "regular": "Average",
+      "button": "Send review",
+      "bad": "Not good",
+      "comment": "Leave a message (optional)",
+      "last": "Last Feedback",
+      "total": "in total",
+      "upcoming": "Upcoming Sessions"
+    },
+    "profile": {
+      "profile": "Your Profile",
+      "personal": "Personal Information",
+      "name": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "identity": "ID Document",
+      "notifications": "Enable Notifications",
+      "location": "Share Location",
+      "password": "Change Password",
+      "account": "Account",
+      "change": "Change",
+      "logOut": "Logout",
+      "delete": "Delete Account",
+      "complaints": "Complaints & Claims",
+      "complaintsCta": "FAQs and File a Claim",
+      "complaintsDesc": "Find answers to common questions or file a claim."
+    },
+    "sidebar": {
+      "home": "Home",
+      "appointments": "Sessions",
+      "favorites": "My Favorites",
+      "profile": "My Profile"
+    },
+    "toolbar": {
+      "search": "Search Psychologist..."
+    },
+    "favorites": {
+      "book": "Book Session"
+    }
+  }
+}
