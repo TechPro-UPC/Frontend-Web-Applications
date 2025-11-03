@@ -4,7 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import {NgIf, NgOptimizedImage} from '@angular/common';
 import { AccountApiService } from '../../services/accountApi.service';
 import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -21,6 +21,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     RouterLink,
     NgIf,
     TranslatePipe,
+    NgOptimizedImage,
   ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css'
