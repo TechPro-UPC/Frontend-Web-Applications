@@ -27,14 +27,14 @@
   }
 
   .sidebar a:hover {
-    background-color: #f2e6fc;
-    color: #8e44ad;
+    background-color: #a2bdec;
+    color: #6896e5;
   }
 
   .sidebar a.active {
-    background-color: #e3c9f7;
+    background-color: #9cbaef;
     font-weight: 600;
-    color: #6a1b9a;
+    color: #4a8cff;
   }
 
   .material-icons {
@@ -44,5 +44,5 @@
   .divider {
     margin: 1rem 0;
     height: 1px;
-    background-color: #e0d5e9;
+    background-color: #a1bff4;
   }

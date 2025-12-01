@@ -16,7 +16,7 @@ table {
 .new-service-btn {
   margin-top: 3rem;
   margin-right: 5rem;
-  background-color: #927EA8;
+  background-color: #7fa4e3;
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -26,5 +26,5 @@ table {
   transition: background-color 0.2s;
 }
 .new-service-btn:hover {
-  background-color: #aa8ec6;
+  background-color: #6ca0f9;
 }

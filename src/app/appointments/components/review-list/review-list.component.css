@@ -28,7 +28,7 @@
   color: #444;
 
   mat-icon {
-    color: #7a22a6;
+    color: #2f6bd3;
   }
 }
 
@@ -78,7 +78,7 @@ button[mat-flat-button] {
   align-self: center;
   text-transform: none;
   font-weight: 500;
-  background-color: #7a22a6;
+  background-color: #4a8cff;
 
 }
 

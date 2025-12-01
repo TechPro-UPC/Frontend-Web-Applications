@@ -26,7 +26,7 @@
 
 .login-link {
   font-weight: bold !important;
-  color: #6e4aff !important; /* Morado MindBridge */
+  color: #4a8cff !important; /* Morado MindBridge */
   text-decoration: none;
 }
 
@@ -50,7 +50,7 @@
 
 .register-button {
   width: 100%;
-  background-color: #6e4aff !important; /* Morado MindBridge */
+  background-color: #4a8cff !important; /* Morado MindBridge */
   color: white !important;
   margin-top: 1.5rem;
 }

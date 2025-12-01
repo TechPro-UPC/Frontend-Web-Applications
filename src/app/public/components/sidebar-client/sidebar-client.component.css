@@ -4,7 +4,7 @@
   align-self: flex-start;
   left: 1.5rem;
   width: 260px;
-  background: linear-gradient(145deg, #f4e3f4, #e4cde4);
+  background: linear-gradient(145deg, #8ba5d2, #a1bff4);
   padding: 1.75rem 1.25rem;
   border-radius: 20px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
@@ -30,15 +30,15 @@
 
 .sidebar a:hover {
   background-color: #ffffffbb;
-  color: #6a1b9a;
+  color: #4a8cff;
   transform: translateX(4px);
 }
 
 .sidebar a.active {
   background-color: #ffffffcc;
-  color: #6a1b9a;
+  color: #4a8cff;
   font-weight: 600;
-  box-shadow: inset 0 0 0 2px #b39ddb;
+  box-shadow: inset 0 0 0 2px #95aed7;
 }
 
 .sidebar a .material-icons {

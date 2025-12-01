@@ -19,7 +19,7 @@
 .card-left h3 {
   margin: 0;
   font-size: 1.3rem;
-  color: #41216e;
+  color: #325796;
 }
 
 .description {
@@ -72,5 +72,5 @@
   padding: 0.6rem 1.5rem;
   border-radius: 12px;
   color: #f1f1f1 !important;
-  background: #6a1b9a !important;
+  background: #4a8cff !important;
 }

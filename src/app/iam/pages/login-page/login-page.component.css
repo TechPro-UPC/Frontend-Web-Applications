@@ -121,7 +121,7 @@
 }
 
 .login-link a {
-  color: #AE4AD9;
+  color: #4a8cff;
   text-decoration: underline;
 }
 
@@ -136,7 +136,7 @@ input[type='password'] {
   width: 100%;
   padding: 10px;
   background: #2a2a40;
-  border: 1px solid #AE4AD9;
+  border: 1px solid #4a8cff;
   border-radius: 8px;
   color: white;
   margin-bottom: 15px;
@@ -144,7 +144,7 @@ input[type='password'] {
 }
 
 input:focus {
-  border-color: #982EA6;
+  border-color: #3967b6;
   outline: none;
 }
 
@@ -157,12 +157,12 @@ input:focus {
 .checkbox label {
   margin-left: 8px;
   font-size: 14px;
-  color: #EDC2F2;
+  color: #95bcff;
 }
 
 .create-account {
   width: 100%;
-  background-color: #982EA6;
+  background-color: #4a8cff;
   border: none;
   padding: 10px;
   border-radius: 8px;
@@ -174,7 +174,7 @@ input:focus {
 }
 
 .create-account:hover {
-  background-color: #AE4AD9;
+  background-color: #8bb1f4;
 }
 
 .divider {
