@@ -7,7 +7,7 @@ export class AccountAssembler {
       id: resource.id,
       email: resource.email,
       passwordHash: resource.passwordHash,
-      type: resource.type,
+      role: resource.role,
       isActive: resource.isActive
     };
   }

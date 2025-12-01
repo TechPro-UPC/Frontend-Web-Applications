@@ -4,7 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {NgIf, NgOptimizedImage} from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { AccountApiService } from '../../services/accountApi.service';
 import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -21,7 +21,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     RouterLink,
     NgIf,
     TranslatePipe,
-    NgOptimizedImage,
+    TranslatePipe,
   ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css'
@@ -48,38 +48,25 @@ export class LoginFormComponent {
     const { email, password } = this.loginForm.value;
 
     this.accountApiService.signIn({ email, password }).subscribe({
-      next: user => {
-        this.accountApiService.saveToken(user.token);
-        const userId = user.id;
+      next: authResponse => {
+        this.accountApiService.saveToken(authResponse.token);
+        console.log('🔍 Auth Response:', authResponse);
 
-        // ① Intentamos provider
-        this.accountApiService.isProvider(userId).subscribe({
-          next: provider => {
-            if (provider) {
-              localStorage.setItem('providerId', provider.id.toString());
+        // Fetch full user details to get the role
+        this.accountApiService.getAccountById(authResponse.id).subscribe({
+          next: user => {
+            console.log('🔍 User Details:', user);
+            if (user.role === 'PSYCHOLOGIST') {
               this.router.navigate(['/provider/homeProvider']);
-              return;
+            } else if (user.role === 'PATIENT') {
+              this.router.navigate(['/client/homeClient']);
+            } else {
+              this.snackBar.open('Rol desconocido: ' + user.role, 'Cerrar', { duration: 3000 });
             }
-
-            // ② No es provider → intentamos client
-            this.accountApiService.getClient(userId).subscribe({
-              next: client => {
-                if (client) {
-                  localStorage.setItem('clientId', client.id.toString());
-                  this.router.navigate(['/client/homeClient']);
-                } else {
-                  this.snackBar.open('El usuario no está vinculado a un rol.', 'Cerrar', { duration: 3000 });
-                }
-              },
-              error: err => {
-                console.error('Error al verificar client:', err);
-                this.snackBar.open('Error al verificar client.', 'Cerrar', { duration: 3000 });
-              }
-            });
           },
           error: err => {
-            console.error('Error al verificar provider:', err);
-            this.snackBar.open('Error al verificar provider.', 'Cerrar', { duration: 3000 });
+            console.error('Error fetching user details:', err);
+            this.snackBar.open('Error al obtener datos del usuario.', 'Cerrar', { duration: 3000 });
           }
         });
       },

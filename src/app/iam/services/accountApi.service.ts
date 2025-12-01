@@ -4,10 +4,7 @@ import { AccountResponse } from './account.reponse';
 import { AccountEntity } from '../model/account.entity';
 import { AccountAssembler } from './account.assembler';
 import { Observable, map } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import {Provider} from '../model/provider.entity';
-import { catchError, of, throwError } from 'rxjs';
-import {Client} from '../model/client.entity';
+
 export interface SignInPayload {
   email: string;
   password: string;
@@ -16,30 +13,26 @@ export interface SignInPayload {
 export interface SignUpPayload {
   email: string;
   password: string;
-  companyName: string;
-  type: 'provider' | 'client';
-
+  role: 'PATIENT' | 'PSYCHOLOGIST';
 }
-
 
 export interface AuthenticatedUser {
   id: number;
   email: string;
   token: string;
-  type: 'provider' | 'client';
+  role: 'PATIENT' | 'PSYCHOLOGIST';
 }
-
 
 export interface UserResource {
   id: number;
   email: string;
-  type: string;
+  role: string;
 }
 
 @Injectable({ providedIn: 'root' })
 export class AccountApiService extends BaseService<AccountResponse> {
-  override resourceEndpoint = '/accounts';
-  private authEndpoint = `${this.serverBaseUrl}/authentication`; // ✅ CORREGIDO
+  override resourceEndpoint = '/users';
+  private authEndpoint = `${this.serverBaseUrl}/authentication`;
 
   constructor() {
     super();
@@ -61,7 +54,6 @@ export class AccountApiService extends BaseService<AccountResponse> {
     return this.http.post<AuthenticatedUser>(`${this.authEndpoint}/sign-in`, payload, this.httpOptions);
   }
 
-
   public signUp(payload: SignUpPayload): Observable<UserResource> {
     return this.http.post<UserResource>(`${this.authEndpoint}/sign-up`, payload, this.httpOptions);
   }
@@ -76,44 +68,5 @@ export class AccountApiService extends BaseService<AccountResponse> {
 
   public logout(): void {
     localStorage.removeItem('jwt_token');
-  }
-
-  isProvider(userId: number) {                       // ← devuelve Provider | null
-    return this.http.get<Provider>(
-      `${this.serverBaseUrl}/providers/user/${userId}`, this.httpOptions
-    ).pipe(
-      catchError(err =>
-        err.status === 404 ? of(null) : throwError(() => err)
-      )
-    );
-  }
-
-  getClient(userId: number) {                        // ← devuelve Client | null
-    return this.http.get<Client>(
-      `${this.serverBaseUrl}/clients/user/${userId}`, this.httpOptions
-    ).pipe(
-      catchError(err =>
-        err.status === 404 ? of(null) : throwError(() => err)
-      )
-    );
-  }
-  public createProvider(companyName: string, userId: number): Observable<any> {
-    const payload = { companyName, userId };
-    return this.http.post(`${this.serverBaseUrl}/providers`, payload);
-  }
-
-  public createClient(firstName: string, lastName: string, userId: number): Observable<any> {
-    const payload = { firstName, lastName, userId };
-    return this.http.post(`${this.serverBaseUrl}/clients`, payload);
-  }
-
-  getProviderId(): number | null {
-    const id = localStorage.getItem('providerId');
-    return id ? parseInt(id, 10) : null;
-  }
-
-  getClientId(): number | null {
-    const id = localStorage.getItem('clientId');
-    return id ? parseInt(id, 10) : null;
   }
 }

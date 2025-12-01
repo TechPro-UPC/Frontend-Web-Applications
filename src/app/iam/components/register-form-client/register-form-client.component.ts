@@ -7,7 +7,7 @@ import { AccountApiService, SignUpPayload, UserResource } from '../../services/a
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
-import {NgOptimizedImage} from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-register-form-client',
@@ -21,7 +21,7 @@ import {NgOptimizedImage} from '@angular/common';
     MatLabel,
     RouterLink,
     TranslatePipe,
-    NgOptimizedImage
+    TranslatePipe
   ],
   templateUrl: './register-form-client.component.html',
   styleUrl: './register-form-client.component.css'
@@ -52,29 +52,17 @@ export class RegisterFormClientComponent {
     const payload: SignUpPayload = {
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
-      companyName: '', // Not needed for client
-      type: 'client'
+      role: 'PATIENT'
     };
 
     this.accountService.signUp(payload).subscribe({
       next: (user: UserResource) => {
-        this.accountService.createClient(
-          this.registerForm.value.firstName,
-          this.registerForm.value.lastName,
-          user.id
-        ).subscribe({
-          next: () => {
-            this.snackBar.open('Account created successfully!', 'Close', {
-              duration: 3000,
-              horizontalPosition: 'center',
-              verticalPosition: 'top'
-            });
-            setTimeout(() => this.router.navigate(['/iam/login']), 1500);
-          },
-          error: () => {
-            this.snackBar.open('User created but failed to link as client', 'Close', { duration: 3000 });
-          }
+        this.snackBar.open('Account created successfully!', 'Close', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
         });
+        setTimeout(() => this.router.navigate(['/iam/login']), 1500);
       },
       error: () => {
         this.snackBar.open('Something went wrong. Try again.', 'Close', { duration: 3000 });

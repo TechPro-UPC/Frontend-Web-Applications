@@ -64,6 +64,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "Frontend-Web-Applications:build:production"
@@ -89,7 +92,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-
               }
             ],
             "styles": [

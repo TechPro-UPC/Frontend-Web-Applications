@@ -5,9 +5,9 @@ import { Router, RouterLink } from '@angular/router';
 import { AccountApiService, SignUpPayload, UserResource } from '../../services/accountApi.service';
 
 import { TranslatePipe } from '@ngx-translate/core';
-import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
-import {MatButton} from '@angular/material/button';
-import {NgOptimizedImage} from '@angular/common';
+import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-register-form-provider',
@@ -21,7 +21,7 @@ import {NgOptimizedImage} from '@angular/common';
     MatLabel,
     RouterLink,
     TranslatePipe,
-    NgOptimizedImage
+    TranslatePipe
   ],
   templateUrl: './register-form-provider.component.html',
   styleUrl: './register-form-provider.component.css'
@@ -50,25 +50,19 @@ export class RegisterFormProviderComponent {
     }
 
     const payload: SignUpPayload = {
-      ...this.registerForm.value,
-      type: 'provider'
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password,
+      role: 'PSYCHOLOGIST'
     };
 
     this.accountService.signUp(payload).subscribe({
       next: (user: UserResource) => {
-        this.accountService.createProvider(payload.companyName, user.id).subscribe({
-          next: () => {
-            this.snackBar.open('Account created successfully!', 'Close', {
-              duration: 3000,
-              horizontalPosition: 'center',
-              verticalPosition: 'top'
-            });
-            setTimeout(() => this.router.navigate(['/iam/login']), 1500);
-          },
-          error: () => {
-            this.snackBar.open('User created but failed to link as provider', 'Close', { duration: 3000 });
-          }
+        this.snackBar.open('Account created successfully!', 'Close', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
         });
+        setTimeout(() => this.router.navigate(['/iam/login']), 1500);
       },
       error: () => {
         this.snackBar.open('Something went wrong. Try again.', 'Close', { duration: 3000 });
