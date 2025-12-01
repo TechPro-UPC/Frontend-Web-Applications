@@ -9,6 +9,11 @@
     </p>
 
     <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{ 'register.number' | translate }}</mat-label>
+      <input matInput formControlName="numLicense" type="text" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
       <mat-label>{{ 'register.company' | translate }}</mat-label>
       <input matInput formControlName="companyName" type="text" />
     </mat-form-field>
@@ -23,7 +28,29 @@
       <input matInput formControlName="password" type="password" />
     </mat-form-field>
 
-    <button mat-raised-button color="primary" class="register-button" type="submit">
+    <mat-checkbox formControlName="acceptTerms" class="full-width">
+      {{ 'register.termsPrefix' | translate }}
+      <a href="#" class="link-like" (click)="openLegal($event, 'terms')">
+        {{ 'legal.terms.title' | translate }}
+      </a>,
+      <a href="#" class="link-like" (click)="openLegal($event, 'privacy')">
+        {{ 'legal.privacy.title' | translate }}
+      </a>
+      {{ 'register.and' | translate }}
+      <a href="#" class="link-like" (click)="openLegal($event, 'code')">
+        {{ 'legal.code.title' | translate }}
+      </a>.
+    </mat-checkbox>
+
+    <div class="error"
+         role="alert"
+         aria-live="polite"
+         *ngIf="registerForm.get('acceptTerms')?.touched && registerForm.get('acceptTerms')?.hasError('required')">
+      {{ 'register.acceptTermsError' | translate }}
+    </div>
+
+    <button mat-raised-button color="primary" class="register-button" type="submit"
+            [disabled]="registerForm.invalid || registerForm.pending">
       Create account
     </button>
   </div>

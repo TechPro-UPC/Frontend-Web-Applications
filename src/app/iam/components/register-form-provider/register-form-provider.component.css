@@ -88,3 +88,19 @@
   width: 10rem;
   margin-bottom: 1rem;
 }
+
+.link-like {
+  color: #4a8cff !important;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link-like:hover {
+  color: #2c5ab8 !important;
+}
+
+.error {
+  color: #f44336;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}

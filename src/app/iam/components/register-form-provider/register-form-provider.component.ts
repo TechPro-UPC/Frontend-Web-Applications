@@ -7,7 +7,14 @@ import { AccountApiService, SignUpPayload, UserResource } from '../../services/a
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
-import { NgOptimizedImage } from '@angular/common';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { NgIf } from '@angular/common';
+
+// Modales legales
+import {TermsandconditionsModalComponent} from '../termsandconditions-modal/termsandconditions-modal.component';
+import {PrivacyPolicyModalComponent} from '../privacypolicy-modal/privacypolicy-modal.component';
+import {CodeModalComponent} from '../code-modal/code-modal.component';
 
 @Component({
   selector: 'app-register-form-provider',
@@ -19,9 +26,11 @@ import { NgOptimizedImage } from '@angular/common';
     MatInput,
     MatButton,
     MatLabel,
+    MatCheckbox,
+    MatDialogModule,
     RouterLink,
     TranslatePipe,
-    TranslatePipe
+    NgIf
   ],
   templateUrl: './register-form-provider.component.html',
   styleUrl: './register-form-provider.component.css'
@@ -34,12 +43,39 @@ export class RegisterFormProviderComponent {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private router: Router,
-    private accountService: AccountApiService
+    private accountService: AccountApiService,
+    private dialog: MatDialog
   ) {
     this.registerForm = this.fb.group({
+      numLicense: ['', [
+        Validators.required,
+        Validators.pattern(/^\d+$/)
+      ]],
       companyName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      acceptTerms: [false, Validators.requiredTrue]
+    });
+  }
+
+  openLegal(ev: Event, which: 'terms'|'privacy'|'code') {
+    ev.preventDefault(); 
+    ev.stopPropagation();
+
+    let comp: any;
+    switch (which) {
+      case 'terms':   comp = TermsandconditionsModalComponent; break;
+      case 'privacy': comp = PrivacyPolicyModalComponent; break;
+      case 'code':    comp = CodeModalComponent; break;
+      default: return;
+    }
+
+    this.dialog.open(comp, { width: '720px', maxWidth: '96vw' })
+      .afterClosed().subscribe(accepted => {
+      if (which === 'terms' && accepted) {
+        this.registerForm.get('acceptTerms')?.setValue(true);
+        this.registerForm.get('acceptTerms')?.markAsTouched();
+      }
     });
   }
 

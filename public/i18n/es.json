@@ -19,7 +19,36 @@
     "email": "Correo electrónico",
     "password": "Contraseña",
     "create": "Crear cuenta",
-    "company": "Nombre de la Clínica / Centro"
+    "company": "Nombre de la Clínica / Centro",
+    "number": "Número de colegiatura profesional",
+    "termsPrefix": "He leído y acepto los",
+    "and": "y la",
+    "acceptTermsError": "Debes aceptar los términos para continuar."
+  },
+  "common": {
+    "accept": "Aceptar",
+    "decline": "Rechazar"
+  },
+  "legal": {
+    "terms": {
+      "title": "Términos y Condiciones",
+      "p1": "Estos Términos regulan la prestación de servicios psicológicos a través de la plataforma. Al continuar aceptas estos Términos y el marco normativo peruano aplicable, incluyendo la Ley No. 29414 (2009) sobre derechos de los pacientes.",
+      "p2": "El consentimiento informado se presentará antes de la atención. Explica alcance, riesgos y limitaciones (incluida la atención remota), confidencialidad y sus límites legales, y el tratamiento de datos personales/clínicos. Tu aceptación queda registrada.",
+      "p3": "Deberes profesionales y ética. El psicólogo declara estar debidamente colegiado y se compromete a cumplir el Código de Ética y Deontología del Colegio de Psicólogos del Perú (2018), actuando con competencia, integridad y respeto a los derechos de los usuarios bajo la Ley No. 29414.",
+      "p4": "Protección de datos y trazabilidad. Los datos personales y clínicos son confidenciales y tratados bajo la Ley No. 29733. El acceso está restringido a fines asistenciales. La plataforma mantiene registros de accesos y cambios (fecha/hora, usuario/IP, versión de consentimiento) para seguridad y cumplimiento. Los derechos del titular de datos pueden ejercerse a través de los canales disponibles.",
+      "p5": "La plataforma no es un servicio de emergencia. En casos de riesgo inminente para el usuario o terceros, el profesional podrá activar asistencias o derivaciones conforme al Código de Ética y legislación aplicable. La plataforma proporciona herramientas tecnológicas pero no reemplaza el juicio profesional."
+    },
+    "privacy": {
+      "title": "Política de Privacidad",
+      "p6": "Datos que procesamos. Datos de identificación y contacto; datos de cuenta (credenciales almacenadas de forma segura), información profesional; registros de uso del servicio y actividad; y, solo cuando sea estrictamente necesario para la atención psicológica, datos clínicos/sensibles (ej. motivo de consulta, notas de evolución), manejados con salvaguardas reforzadas.",
+      "p7": "Consentimiento. Donde la ley requiere consentimiento expreso (ej. datos sensibles), lo solicitaremos y registraremos fecha/hora, usuario y versión aceptada. Puedes retirar el consentimiento en cualquier momento sin efecto retroactivo sobre el procesamiento ya realizado para brindar atención o cumplir la ley.",
+      "p8": "Retención. Conservamos los datos personales solo el tiempo necesario para cumplir los fines declarados. Los registros clínicos/médicos se conservan según las regulaciones sanitarias aplicables y nuestra política de retención. Transcurrido el plazo de retención, eliminamos o anonimizamos los datos de forma segura.",
+      "p9": "Menores y personas vulnerables. Si el usuario es menor de edad, el registro y acceso debe realizarse a través de la cuenta del padre/tutor; el padre/tutor es el titular de la relación contractual. Cuando corresponda, obtenemos autorización de padre/tutor o representante legal y aplicamos salvaguardas adicionales conforme al Código de Ética y regulaciones sanitarias."
+    },
+    "code": {
+      "title": "Código de Ética y Deontología de Psicólogos del Perú",
+      "p10": "Al continuar, confirmo que estoy colegiado y me comprometo a cumplir el Código de Ética y Deontología del Colegio de Psicólogos del Perú (Resolución No. 190-2018-CDN-C.PsP), manteniendo el respeto por la dignidad humana y autonomía, competencia profesional, confidencialidad y secreto profesional, registros e informes veraces, prohibición de publicidad engañosa, y priorización de los derechos e intereses superiores de la persona atendida."
+    }
   },
   "dashboard": {
     "home": "Inicio",
