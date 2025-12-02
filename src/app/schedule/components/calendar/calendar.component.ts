@@ -1,10 +1,9 @@
-import { Component, OnInit} from '@angular/core';
-import {NgForOf} from '@angular/common';
-import {ReservationComponent} from '../reservation/reservation.component';
-import { CommonModule } from '@angular/common';
-import { Appointment} from '../../../dashboard/models/appointment.entity';
-import {ClientAppointment} from '../../../appointments/model/appointment.entity';
-import {AppointmentApiService} from '../../../appointments/services/appointment-api-service.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { NgForOf, NgIf, CommonModule } from '@angular/common';
+import { ReservationComponent } from '../reservation/reservation.component';
+import { SchedulingService } from '../../services/scheduling.service';
+import { TimeSlot } from '../../models/time-slot.entity';
+import { Reservation } from '../../models/reservation.entity';
 
 @Component({
   selector: 'app-calendar',
@@ -13,9 +12,10 @@ import {AppointmentApiService} from '../../../appointments/services/appointment-
   standalone: true,
   imports: [
     NgForOf,
+    NgIf,
     ReservationComponent,
     CommonModule
-  ], // Aquí luego agregaremos CommonModule y el ReservationComponent
+  ],
 })
 export class CalendarComponent implements OnInit {
   days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -25,14 +25,31 @@ export class CalendarComponent implements OnInit {
     '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'
   ];
 
-  workers: string[] = ['Todos']; // Inicializar para evitar error
+  workers: string[] = ['Todos'];
   currentWorkerIndex: number = 0;
 
+  @Input() isPatient: boolean = false;
 
-  /*
-  workers = ['Todos', 'Gael Rivera', 'Kevin Chi'];
-  currentWorkerIndex = 0;
-  */
+  timeSlots: TimeSlot[] = [];
+  reservations: Reservation[] = [];
+
+  constructor(private schedulingService: SchedulingService) { }
+
+  ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData(): void {
+    this.schedulingService.getAllTimeSlots().subscribe(slots => {
+      this.timeSlots = slots;
+      console.log('TimeSlots:', this.timeSlots);
+    });
+
+    this.schedulingService.getAllReservations().subscribe(res => {
+      this.reservations = res;
+      console.log('Reservations:', this.reservations);
+    });
+  }
 
   get currentWorker(): string {
     return this.workers[this.currentWorkerIndex];
@@ -41,53 +58,6 @@ export class CalendarComponent implements OnInit {
   swapWorker(): void {
     this.currentWorkerIndex = (this.currentWorkerIndex + 1) % this.workers.length;
   }
-  /*
-  calendars: Appointment[] = [];
-
-  constructor(private appointmentService: AppointmentApiService) {}
-
-  ngOnInit(): void {
-    this.appointmentService.getAppointments().subscribe(
-      appointments => {
-        this.calendars = appointments;
-        console.log(this.calendars);
-
-        const workerSet = new Set<string>();
-        for (const appointment of appointments) {
-          if (appointment.workerName) {
-            workerSet.add(appointment.workerName);
-          }
-        }
-
-        this.workers = ['Todos', ...Array.from(workerSet)];
-
-      });
-
-  }*/
-  calendars: ClientAppointment[] = [];
-
-  constructor(private appointmentService: AppointmentApiService) {}
-
-  ngOnInit(): void {
-    this.appointmentService.getAppointments().subscribe(
-      appointments => {
-        this.calendars = appointments;
-        console.log(this.calendars);
-
-        const workerSet = new Set<string>();
-        for (const appointment of appointments) {
-          if (appointment.workerId.name) {
-            workerSet.add(appointment.workerId.name);
-          }
-        }
-
-        this.workers = ['Todos', ...Array.from(workerSet)];
-
-      });
-    console.log("Prueba formatTime:", this.formatTime("2025-07-05T06:40:00"));
-    console.log("Prueba formatDay:", this.formatDay("2025-07-05T06:40:00"));
-
-  }
 
   formatTime(dateStr: string): string {
     const date = new Date(dateStr);
@@ -95,7 +65,6 @@ export class CalendarComponent implements OnInit {
     const minutes = String(date.getMinutes()).padStart(2, '0');
     return `${hours}:${minutes}`;
   }
-
 
   formatDay(dateStr: string): string {
     const date = new Date(dateStr);
@@ -115,48 +84,67 @@ export class CalendarComponent implements OnInit {
     return date.getHours() === hour;
   }
 
-
-
-  isToday(dateStr: string): boolean {
-    const today = new Date();
-    const date = new Date(dateStr);
-    return today.toDateString() == date.toDateString();
+  // Helper to find reservation for a specific slot if needed
+  getReservationForSlot(slotId: number): Reservation | undefined {
+    return this.reservations.find(r => r.timeSlotId === slotId);
   }
 
-
-  /*
-  appointments = [
-    {
-      service: 'Manicura',
-      startTime: '09:00',
-      endTime: '10:00',
-      day: 'Monday',
-      client: 'Ana Pérez',
-      worker: 'Gael Rivera'
-    },
-    {
-      service: 'Pedicura',
-      startTime: '10:00',
-      endTime: '11:00',
-      day: 'Tuesday',
-      client: 'Carlos Gómez',
-      worker: 'Kevin Chi'
-    },
-    {
-      service: 'Manicura',
-      startTime: '12:00',
-      endTime: '13:00',
-      day: 'Wednesday',
-      client: 'María Lopez',
-      worker: 'Gael Rivera'
-    },
-    {
-      service: 'Pedicura',
-      startTime: '15:00',
-      endTime: '16:00',
-      day: 'Thursday',
-      client: 'Laura Ríos',
-      worker: 'Kevin Chi'
+  handleSlotClick(day: string, hour: string, slot?: TimeSlot): void {
+    if (this.isPatient) {
+      if (slot) {
+        this.createReservation(slot);
+      } else {
+        console.log('No slot available to book');
+      }
+    } else {
+      // Provider creates slot
+      this.createTimeSlot(day, hour);
     }
-  ];*/
+  }
+
+  createReservation(slot: TimeSlot): void {
+    const newReservation = {
+      patientId: 10, // Hardcoded for now as per request context or mock
+      psycologistId: 4, // Mock
+      timeSlotId: slot.id,
+      paymentId: 10 // Mock
+    };
+
+    this.schedulingService.createReservation(newReservation).subscribe(created => {
+      console.log('Created reservation:', created);
+      this.reservations.push(created);
+      alert('Reservation created!');
+    });
+  }
+
+  createTimeSlot(day: string, hour: string): void {
+    // Logic to create a time slot
+    // We need to construct a real date from 'day' and 'hour' relative to "current week"
+    // For simplicity, let's assume we are viewing the current week.
+
+    const now = new Date();
+    const currentDayIndex = now.getDay() || 7; // 1 (Mon) - 7 (Sun)
+    const targetDayIndex = this.days.indexOf(day) + 1;
+
+    const diff = targetDayIndex - currentDayIndex;
+    const targetDate = new Date(now);
+    targetDate.setDate(now.getDate() + diff);
+
+    const [h, m] = hour.split(':').map(Number);
+    targetDate.setHours(h, m, 0, 0);
+
+    const startTime = targetDate.toISOString();
+    const endTime = new Date(targetDate.getTime() + 60 * 60 * 1000).toISOString(); // +1 hour
+
+    const newSlot = {
+      startTime: startTime,
+      endTime: endTime,
+      psychologistId: 0 // Default or get from auth
+    };
+
+    this.schedulingService.createTimeSlot(newSlot).subscribe(created => {
+      console.log('Created slot:', created);
+      this.timeSlots.push(created);
+    });
+  }
 }

@@ -6,25 +6,19 @@
 
     <div class="search-bar" aria-label="Search bar">
       <span class="material-icons">search</span>
-      <input type="text"
-             placeholder="{{'client.toolbar.search' | translate}}"
-             aria-label="Search"
-             matInput
-             [formControl]="myControl"
-             [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSalonSelected($event.option.value)">
-        @for (salon of filteredOptions; track salon) {
-          <mat-option [value]="salon">{{salon.companyName}}</mat-option>
+      <input type="text" placeholder="{{'client.toolbar.search' | translate}}" aria-label="Search" matInput
+        [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onPsychologistSelected($event.option.value)">
+        @for (psychologist of filteredOptions; track psychologist) {
+        <mat-option [value]="psychologist">{{psychologist.firstName}} {{psychologist.lastName}}</mat-option>
         }
       </mat-autocomplete>
     </div>
   </div>
 
   <div class="center-section">
-    <img src="https://i.ibb.co/yFFdpR6C/logo.png" 
-       alt="MindBridge Logo"
-        class="logo-img"
-        style="width: 140px; height: auto;">
+    <img src="https://i.ibb.co/yFFdpR6C/logo.png" alt="MindBridge Logo" class="logo-img"
+      style="width: 140px; height: auto;">
   </div>
 
   <div class="right-section">

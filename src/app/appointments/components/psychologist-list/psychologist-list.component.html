@@ -1,0 +1,20 @@
+<div class="psychologist-list-container">
+    <h3>Our Staff</h3>
+    <div class="psychologist-list">
+        <div *ngFor="let psychologist of psychologists" class="psychologist-card">
+            <div class="psychologist-info">
+                <div class="avatar-placeholder">
+                    <!-- Placeholder for image, or use actual image if available -->
+                    <img src="assets/images/default-avatar.png" alt="Avatar" onerror="this.style.display='none'">
+                </div>
+                <div class="details">
+                    <h4>{{ psychologist.firstName }} {{ psychologist.lastName }}</h4>
+                    <p>{{ psychologist.specialization }}</p>
+                </div>
+            </div>
+            <button class="view-schedule-btn" (click)="selectPsychologist(psychologist)">
+                > View schedule
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {LanguageSwitcherComponent} from '../language-switcher/language-switcher.component';
-import {RouterLink, RouterLinkActive} from '@angular/router';
-import {ProviderProfile} from '../../../dashboard/models/Salon.entity';
-import {ProviderProfileAssembler} from '../../../dashboard/services/ProviderProfileAssembler';
-import {SalonApiService} from '../../../dashboard/services/salon-api.service';
-import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from '@angular/material/autocomplete';
-import { MatInput} from '@angular/material/input';
-import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import {Router} from '@angular/router';
-import {TranslatePipe} from '@ngx-translate/core';
+import { Component, OnInit } from '@angular/core';
+import { catchError, of } from 'rxjs';
+import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
+import { RouterLink } from '@angular/router';
+import { Psychologist } from '../../../profile/models/psychologist.entity';
+import { PsychologistApiService } from '../../../profile/services/psychologist-api.service';
+import { MatAutocomplete, MatAutocompleteTrigger, MatOption } from '@angular/material/autocomplete';
+import { MatInput } from '@angular/material/input';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({
@@ -26,29 +26,41 @@ import {TranslatePipe} from '@ngx-translate/core';
   templateUrl: './toolbar-client.component.html',
   styleUrl: './toolbar-client.component.css'
 })
-export class ToolbarClientComponent implements OnInit{
-salones: ProviderProfile[] = [];
-myControl = new FormControl();
-filteredOptions: ProviderProfile[] = [];
+export class ToolbarClientComponent implements OnInit {
+  psychologists: Psychologist[] = [];
+  myControl = new FormControl();
+  filteredOptions: Psychologist[] = [];
 
-constructor(private salonService: SalonApiService, private router: Router) {
+  constructor(private psychologistService: PsychologistApiService, private router: Router) {
 
-}
-ngOnInit() {
-  this.salonService.getAll().subscribe(salones => {
-    this.salones = ProviderProfileAssembler.toEntitiesfromResponse(salones);
-    this.filteredOptions = this.salones;
-    console.log('Search bar input succesfull',this.salones);
-    this.myControl.valueChanges.subscribe(value => {
-      const filterValue = value?.toLowerCase?.() || '';
-      this.filteredOptions = this.salones.filter(salon => salon.companyName.toLowerCase().includes(filterValue))
-    })
-  });
-}
-
-onSalonSelected(salon: ProviderProfile) {
-  if(salon && salon.id) {
-    this.router.navigate(['/client/homeClient/salon', salon.id]);
   }
-}
+
+  ngOnInit() {
+    this.psychologistService.getAll().pipe(
+      catchError(error => {
+        console.error('Error loading psychologists in toolbar:', error);
+        return of([]);
+      })
+    ).subscribe(psychologists => {
+      this.psychologists = psychologists;
+      this.filteredOptions = this.psychologists;
+      console.log('Psychologists loaded:', this.psychologists);
+
+      this.myControl.valueChanges.subscribe(value => {
+        const filterValue = value?.toLowerCase?.() || '';
+        this.filteredOptions = this.psychologists.filter(psychologist =>
+          (psychologist.firstName + ' ' + psychologist.lastName).toLowerCase().includes(filterValue)
+        );
+      });
+    });
+  }
+
+  onPsychologistSelected(psychologist: Psychologist) {
+    if (psychologist && psychologist.id) {
+      // Navigate to psychologist profile or schedule page
+      // For now, let's assume we navigate to a profile page or similar
+      // this.router.navigate(['/client/psychologist', psychologist.id]);
+      console.log('Selected psychologist:', psychologist);
+    }
+  }
 }

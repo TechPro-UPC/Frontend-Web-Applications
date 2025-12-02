@@ -14,30 +14,14 @@
     <div class="calendar-body" aria-label="Calendar body">
       <div class="hour-row" *ngFor="let hour of hours" aria-label="Hour row">
         <div class="time-label" aria-label="Hour label">{{ hour }}</div>
-        <div class="day-cell" *ngFor="let day of days" aria-label="Day cell">
+        <div class="day-cell" *ngFor="let day of days" (click)="handleSlotClick(day, hour)" aria-label="Day cell">
 
-          <ng-container *ngFor="let appointment of calendars">
-            <!--<app-reservation
-              *ngIf=" formatDay(appointment.timeSlot.startTime)== day
-                      && formatTime(appointment.timeSlot.startTime )=== hour
-                      && (currentWorker === 'Todos' || appointment.workerId.name === currentWorker)"
-              [service]="appointment.workerId.specialization"
-              [startTime]="formatTime(appointment.timeSlot.startTime)"
-              [endTime]="formatTime(appointment.timeSlot.endTime)"
-              [clientName]="appointment.clientId.toString()"
-              aria-label="Appointment reservation"
-            ></app-reservation>-->
-            <app-reservation
-              *ngIf="
-    isSameDay(appointment.timeSlot.startTime, day) &&
-    isWithinHour(appointment.timeSlot.startTime, hour) &&
-    (currentWorker === 'Todos' || appointment.workerId.name === currentWorker)
-  "
-              [service]="appointment.workerId.specialization"
-              [startTime]="formatTime(appointment.timeSlot.startTime)"
-              [endTime]="formatTime(appointment.timeSlot.endTime)"
-              [clientName]="appointment.clientId.toString()"
-            ></app-reservation>
+          <ng-container *ngFor="let slot of timeSlots">
+            <app-reservation *ngIf="
+                isSameDay(slot.startTime, day) &&
+                isWithinHour(slot.startTime, hour)
+              " [service]="'Session'" [startTime]="formatTime(slot.startTime)" [endTime]="formatTime(slot.endTime)"
+              [clientName]="'Available'"></app-reservation>
           </ng-container>
 
         </div>

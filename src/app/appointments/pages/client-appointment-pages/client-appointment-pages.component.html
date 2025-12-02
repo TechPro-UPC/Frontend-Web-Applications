@@ -1,9 +1,13 @@
 <div class="main-container">
-  <div class="sidebar-item">
+  <div class="sidebar-section">
     <app-sidebar-client></app-sidebar-client>
-    <app-upcoming-appointments class="appointment-dashboard" [isClient]="true"></app-upcoming-appointments>
   </div>
-  <div class="apo-items" aria-label="appointment-list">
-    <app-appointments-list></app-appointments-list>
+  <div class="content-grid">
+    <div class="list-section">
+      <app-psychologist-list></app-psychologist-list>
+    </div>
+    <div class="calendar-section">
+      <app-calendar [isPatient]="true"></app-calendar>
+    </div>
   </div>
 </div>
