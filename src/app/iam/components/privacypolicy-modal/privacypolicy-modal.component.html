@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{ 'legal.privacy.title' | translate }}</h2>
+
+<mat-dialog-content style="max-height:60vh; overflow:auto">
+  <p>{{ 'legal.privacy.p6' | translate }}</p>
+  <p>{{ 'legal.privacy.p7' | translate }}</p>
+  <p>{{ 'legal.privacy.p8' | translate }}</p>
+  <p>{{ 'legal.privacy.p9' | translate }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close="false">{{ 'common.decline' | translate }}</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">{{ 'common.accept' | translate }}</button>
+</mat-dialog-actions>
