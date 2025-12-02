@@ -7,6 +7,5 @@ export const environment = {
   coursesEndpointPath: '',
   salonEndpointPath: '/salons',
   appointmentEndpointPath: ''
-
 };
 
