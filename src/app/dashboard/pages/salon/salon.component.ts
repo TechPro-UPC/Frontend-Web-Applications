@@ -1,21 +1,21 @@
-import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
-import {MatCard, MatCardImage} from '@angular/material/card';
-import {ProviderProfile} from '../../models/Salon.entity';
-import {ReviewListComponent} from '../../components/review-list/review-list.component';
-import {Review} from '../../../reviews/models/review.entity';
-import {ReviewApiService} from '../../../reviews/services/review-api.service';
-import {SalonApiService} from '../../services/salon-api.service';
-import {MatButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
-import {ActivatedRoute, RouterLink} from '@angular/router';
-import {SalonProfile} from '../../../profile/models/salon-profile.entity';
-import {ProfileClientService} from '../../../profile/services/profile-api.service';
-import {SalonProfileApiService} from '../../../profile/services/salon-profile-api.service';
-import {ServiceListComponent} from "../../../services/components/service-list/service-list.component";
-import {Service} from "../../../services/model/service.entity";
-import {ServiceApiService} from "../../../services/services/services-api.service";
-import {ProviderProfileAssembler} from '../../services/ProviderProfileAssembler';
-import {ServiceAssembler} from '../../../services/services/service.assembler';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { MatCard, MatCardImage } from '@angular/material/card';
+import { ProviderProfile } from '../../models/Salon.entity';
+import { ReviewListComponent } from '../../components/review-list/review-list.component';
+import { Review } from '../../../reviews/models/review.entity';
+import { ReviewApiService } from '../../../reviews/services/review-api.service';
+import { SalonApiService } from '../../services/salon-api.service';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { SalonProfile } from '../../../profile/models/salon-profile.entity';
+import { ProfileClientService } from '../../../profile/services/profile-api.service';
+import { SalonProfileApiService } from '../../../profile/services/salon-profile-api.service';
+import { ServiceListComponent } from "../../../services/components/service-list/service-list.component";
+import { Service } from "../../../services/model/service.entity";
+import { ServiceApiService } from "../../../services/services/services-api.service";
+import { ProviderProfileAssembler } from '../../services/ProviderProfileAssembler';
+import { ServiceAssembler } from '../../../services/services/service.assembler';
 
 @Component({
   selector: 'app-salon',
@@ -41,10 +41,10 @@ export class SalonComponent implements OnInit {
   selectedService: Service | undefined;
 
   constructor(private reviewService: ReviewApiService,
-              private salonService: SalonApiService,
-              private profileService: SalonProfileApiService,
-              private serviceService: ServiceApiService,
-              private router: ActivatedRoute) {
+    private salonService: SalonApiService,
+    private profileService: SalonProfileApiService,
+    private serviceService: ServiceApiService,
+    private router: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -57,8 +57,8 @@ export class SalonComponent implements OnInit {
         console.log('Salon cargado:', this.providerProfile);
 
         // Cargar los reviews relacionados solo después de tener el salon
-        this.reviewService.getReviews().subscribe(reviews => {
-          this.reviews = reviews.filter(review => review.salonId === this.providerProfile.providerId); // usa id numérico
+        this.reviewService.getReviewsByPsychologistId(this.providerProfile.providerId).subscribe(reviews => {
+          this.reviews = reviews;
           console.log('Reviews filtrados:', this.reviews);
         });
 

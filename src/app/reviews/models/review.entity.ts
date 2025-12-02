@@ -1,16 +1,17 @@
 export class Review {
-  id?: number;
-  author: string;
+  id: number;
+  patientId: number;
+  psychologistId: number;
   rating: number;
-  text: string;
-  read: boolean;
-  salonId: number;
+  comment: string;
+  isRead: boolean;
 
   constructor() {
-    this.author = '';
+    this.id = 0;
+    this.patientId = 0;
+    this.psychologistId = 0;
     this.rating = 0;
-    this.text = '';
-    this.read = false;
-    this.salonId = 0;
+    this.comment = '';
+    this.isRead = false;
   }
 }

@@ -1,6 +1,7 @@
 <form class="register-form" [formGroup]="registerForm" aria-label="register form">
   <div class="register-container">
-    <img src="https://github.com/TechPro-UPC/Frontend-Web-Application/src/assets/images/logo.png?raw=true" alt="" class="logo">
+    <img src="https://github.com/TechPro-UPC/Frontend-Web-Application/src/assets/images/logo.png?raw=true" alt=""
+      class="logo">
 
     <h1 class="title" aria-label="register">{{'register.title' | translate}}</h1>
     <p class="subtitle">
@@ -19,6 +20,26 @@
         <input matInput type="text" formControlName="lastName" aria-label="register lastname input">
       </mat-form-field>
     </div>
+    <div class="form-row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>DNI</mat-label>
+        <input matInput type="text" formControlName="dni">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Phone</mat-label>
+        <input matInput type="text" formControlName="phone">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Gender</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="MALE">Male</mat-option>
+        <mat-option value="FEMALE">Female</mat-option>
+        <mat-option value="OTHER">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
       <mat-label aria-label="register email">{{'register.email' | translate}}</mat-label>
@@ -30,7 +51,8 @@
       <input matInput type="password" formControlName="password" aria-label="register password input">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" class="register-button" (click)="onRegister()" aria-label="register create button">
+    <button mat-raised-button color="primary" class="register-button" (click)="onRegister()"
+      aria-label="register create button">
       {{'register.create' | translate}}
     </button>
 

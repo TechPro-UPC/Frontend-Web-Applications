@@ -1,6 +1,7 @@
 <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onRegister()">
   <div class="register-container">
-    <img src="https://github.com/TechPro-UPC/Frontend-Web-Application/src/assets/images/logo.png?raw=true" alt="" class="logo">
+    <img src="https://github.com/TechPro-UPC/Frontend-Web-Application/src/assets/images/logo.png?raw=true" alt=""
+      class="logo">
 
     <h1 class="title">{{ 'register.title' | translate }}</h1>
     <p class="subtitle">
@@ -8,14 +9,47 @@
       <a routerLink="/iam/login" class="login-link">Log in</a>
     </p>
 
+    <div class="form-row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" type="text" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" type="text" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>DNI</mat-label>
+        <input matInput formControlName="dni" type="text" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" type="text" />
+      </mat-form-field>
+    </div>
+
     <mat-form-field appearance="fill" class="full-width">
-      <mat-label>{{ 'register.number' | translate }}</mat-label>
+      <mat-label>Gender</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="MALE">Male</mat-option>
+        <mat-option value="FEMALE">Female</mat-option>
+        <mat-option value="OTHER">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>License Number</mat-label>
       <input matInput formControlName="numLicense" type="text" />
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
-      <mat-label>{{ 'register.company' | translate }}</mat-label>
-      <input matInput formControlName="companyName" type="text" />
+      <mat-label>Specialization</mat-label>
+      <input matInput formControlName="specialization" type="text" />
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
@@ -42,15 +76,13 @@
       </a>.
     </mat-checkbox>
 
-    <div class="error"
-         role="alert"
-         aria-live="polite"
-         *ngIf="registerForm.get('acceptTerms')?.touched && registerForm.get('acceptTerms')?.hasError('required')">
+    <div class="error" role="alert" aria-live="polite"
+      *ngIf="registerForm.get('acceptTerms')?.touched && registerForm.get('acceptTerms')?.hasError('required')">
       {{ 'register.acceptTermsError' | translate }}
     </div>
 
     <button mat-raised-button color="primary" class="register-button" type="submit"
-            [disabled]="registerForm.invalid || registerForm.pending">
+      [disabled]="registerForm.invalid || registerForm.pending">
       Create account
     </button>
   </div>

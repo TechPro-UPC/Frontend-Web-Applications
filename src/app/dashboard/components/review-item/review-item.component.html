@@ -1,11 +1,11 @@
 <div class="review">
   <div class="review-header">
-    <h4 class="review-author">{{ review.author }}</h4>
+    <h4 class="review-author">Patient {{ review.patientId }}</h4>
     <div class="review-stars" aria-label="review-stars">
       @for (_ of getStars(); let i = $index; track review.id) {
-        <span class="star">⭐</span>
+      <span class="star">⭐</span>
       }
     </div>
   </div>
-  <p class="review-text">{{ review.text }}</p>
+  <p class="review-text">{{ review.comment }}</p>
 </div>

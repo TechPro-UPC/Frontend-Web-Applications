@@ -1,5 +1,5 @@
-import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
-import {ProviderProfile} from '../../models/Salon.entity';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { ProviderProfile } from '../../models/Salon.entity';
 import {
   MatCard,
   MatCardActions,
@@ -7,13 +7,13 @@ import {
   MatCardImage,
   MatCardTitle
 } from '@angular/material/card';
-import {MatButton} from '@angular/material/button';
-import {ReviewListComponent} from '../review-list/review-list.component';
-import {RouterLink} from '@angular/router';
-import {Review} from '../../../reviews/models/review.entity';
-import {ReviewApiService} from '../../../reviews/services/review-api.service';
-import {ReviewAssembler} from '../../../reviews/services/review.assembler';
-import {TranslatePipe} from '@ngx-translate/core';
+import { MatButton } from '@angular/material/button';
+import { ReviewListComponent } from '../review-list/review-list.component';
+import { RouterLink } from '@angular/router';
+import { Review } from '../../../reviews/models/review.entity';
+import { ReviewApiService } from '../../../reviews/services/review-api.service';
+import { ReviewAssembler } from '../../../reviews/services/review.assembler';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({
@@ -32,7 +32,7 @@ import {TranslatePipe} from '@ngx-translate/core';
   templateUrl: './Salon-item.component.html',
   styleUrl: './Salon-item.component.css'
 })
-export class SalonItemComponent implements OnInit{
+export class SalonItemComponent implements OnInit {
   @Input() salon!: ProviderProfile;
   @Output() salonSelected = new EventEmitter<ProviderProfile>();
   private reviewService = inject(ReviewApiService)
@@ -47,10 +47,10 @@ export class SalonItemComponent implements OnInit{
       this.reviews.forEach(review=> this.reviewAverage+= review.rating);
       this.reviewAverage = this.reviewAverage/this.reviews.length;
     });*/
-    this.reviewService.getAll().subscribe(reviews => {
-      this.reviews = ReviewAssembler.toEntitiesFromResponse(reviews).filter(review => review.salonId === this.salon.providerId);
-      this.reviews.forEach(review=> this.reviewAverage+= review.rating);
-      this.reviewAverage = this.reviewAverage/this.reviews.length;
+    this.reviewService.getReviewsByPsychologistId(this.salon.providerId).subscribe(reviews => {
+      this.reviews = reviews;
+      this.reviews.forEach(review => this.reviewAverage += review.rating);
+      this.reviewAverage = this.reviewAverage / this.reviews.length;
     });
 
 

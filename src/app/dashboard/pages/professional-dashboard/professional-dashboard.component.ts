@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {Worker} from '../../models/worker.entity';
-import {WorkerApiService} from '../../services/worker-api.service';
-import {StaffListComponent} from '../../components/staff-list/staff-list.component';
-import {UpcomingAppointmentsComponent} from '../../components/upcoming-appointments/upcoming-appointments.component';
-import {Review} from '../../../reviews/models/review.entity';
-import {ReviewApiService} from '../../../reviews/services/review-api.service';
-import {ReviewListComponent} from '../../components/review-list/review-list.component';
-import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
-import {TranslatePipe} from '@ngx-translate/core';
+import { Component, OnInit } from '@angular/core';
+import { Worker } from '../../models/worker.entity';
+import { WorkerApiService } from '../../services/worker-api.service';
+import { StaffListComponent } from '../../components/staff-list/staff-list.component';
+import { UpcomingAppointmentsComponent } from '../../components/upcoming-appointments/upcoming-appointments.component';
+import { Review } from '../../../reviews/models/review.entity';
+import { ReviewApiService } from '../../../reviews/services/review-api.service';
+import { ReviewListComponent } from '../../components/review-list/review-list.component';
+import { MatCard, MatCardContent, MatCardTitle } from '@angular/material/card';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-professional-dashboard',
   imports: [
@@ -36,6 +36,6 @@ export class ProfessionalDashboardComponent implements OnInit {
     }
     console.log('providerId:', providerId);
     this.staffService.getWorkers().subscribe(worker => this.worker = worker.filter(w => w.providerId === providerId));
-    this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews.filter(r => r.salonId === providerId));
+    this.reviewService.getReviewsByPsychologistId(providerId).subscribe(reviews => this.reviews = reviews);
   }
 }

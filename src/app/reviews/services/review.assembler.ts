@@ -5,11 +5,11 @@ export class ReviewAssembler {
   static toEntityFromResource(resource: ReviewResponse): Review {
     return {
       id: resource.id,
-      author: resource.author,
+      patientId: resource.patientId,
+      psychologistId: resource.psychologistId,
       rating: resource.rating,
-      text: resource.review,
-      read: resource.read,
-      salonId: resource.providerId
+      comment: resource.comment,
+      isRead: resource.isRead
     };
   }
 

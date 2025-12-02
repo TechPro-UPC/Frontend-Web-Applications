@@ -1,8 +1,8 @@
 export interface ReviewResponse {
-  id?: number ;
-  author: string;
+  id: number;
+  patientId: number;
+  psychologistId: number;
   rating: number;
-  review: string;
-  read: boolean;
-  providerId: number;
+  comment: string;
+  isRead: boolean;
 }

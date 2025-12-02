@@ -1,9 +1,9 @@
 <div class="review-card">
-  <h4>{{ review.author }}</h4>
+  <h4>Patient {{ review.patientId }}</h4>
   <p class="stars">
     @for (star of [1, 2, 3, 4, 5]; track star) {
       <span aria-label="review" [class.filled]="star <= review.rating">★</span>
     }
   </p>
-  <p class="comment">{{ review.text }}</p>
+  <p class="comment">{{ review.comment }}</p>
 </div>

@@ -3,7 +3,7 @@ import { BaseService } from '../../shared/services/base.service';
 import { ReviewResponse } from './review.response';
 import { Review } from '../models/review.entity';
 import { ReviewAssembler } from './review.assembler';
-import {Observable, map, catchError} from 'rxjs';
+import { Observable, map, catchError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ReviewApiService extends BaseService<ReviewResponse> {
@@ -19,8 +19,9 @@ export class ReviewApiService extends BaseService<ReviewResponse> {
     );
   }
 
-  getBySalonId(salonId:number): Observable<ReviewResponse[]> {
-    return this.http.get<ReviewResponse[]>(`${this.resourcePath()}?providerId=${salonId}`, this.httpOptions).pipe(
+  getReviewsByPsychologistId(psychologistId: number): Observable<Review[]> {
+    return this.http.get<ReviewResponse[]>(`${this.resourcePath()}/psychologist/${psychologistId}`, this.httpOptions).pipe(
+      map(response => ReviewAssembler.toEntitiesFromResponse(response)),
       catchError(this.handleError)
     );
   }
