@@ -1,0 +1,38 @@
+<div class="support-container">
+  <div class="support-fab" (click)="toggle()" [matTooltip]="'support.title' | translate">
+    <span class="support-fab-icon">🎧</span>
+  </div>
+
+  <div class="support-panel" *ngIf="isOpen">
+    <div class="support-header">
+      <div class="support-header-title">{{ 'support.title' | translate }}</div>
+      <button class="support-header-close" type="button" (click)="toggle()">✕</button>
+    </div>
+
+    <div class="support-content">
+      <div class="support-option" (click)="openWhatsApp()">
+        <div class="support-option-icon">💬</div>
+        <div class="support-option-text">
+          <div class="support-option-title">{{ 'support.whatsapp' | translate }}</div>
+          <div class="support-option-subtitle">{{ 'support.whatsappSubtitle' | translate }}</div>
+        </div>
+      </div>
+
+      <div class="support-option" (click)="sendEmail()">
+        <div class="support-option-icon">📧</div>
+        <div class="support-option-text">
+          <div class="support-option-title">{{ 'support.email' | translate }}</div>
+          <div class="support-option-subtitle">{{ 'support.emailSubtitle' | translate }}</div>
+        </div>
+      </div>
+
+      <div class="support-option">
+        <div class="support-option-icon">📖</div>
+        <div class="support-option-text">
+          <div class="support-option-title">{{ 'support.helpCenter' | translate }}</div>
+          <div class="support-option-subtitle">{{ 'support.helpCenterSubtitle' | translate }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

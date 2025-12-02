@@ -5,10 +5,11 @@ import { RouterOutlet } from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 
 import { ChatbotWidgetComponent } from './dashboard/components/chatbot-widget/chatbot-widget.component';
+import { SupportWidgetComponent } from './shared/components/support-widget/support-widget.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,ChatbotWidgetComponent],
+  imports: [RouterOutlet, ChatbotWidgetComponent, SupportWidgetComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
