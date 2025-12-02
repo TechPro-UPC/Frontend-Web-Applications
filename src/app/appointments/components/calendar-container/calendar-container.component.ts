@@ -1,23 +1,23 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { CalendarOptions, EventInput } from '@fullcalendar/core';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import {FullCalendarModule} from '@fullcalendar/angular';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
-import {ClientAppointment} from '../../model/appointment.entity';
+import { ClientAppointment } from '../../model/appointment.entity';
 
 
 
-import {ActivatedRoute, Route} from '@angular/router';
-import {Service} from '../../../services/model/service.entity';
-import {Worker} from '../../../dashboard/models/worker.entity';
-import {AppointmentApiService} from '../../services/appointment-api-service.service';
-import {AppointmentAssembler} from '../../services/appointment.assembler';
-import {AppointmentResponse} from '../../services/appointment.response';
-import {TimeSlotApiService} from '../../services/time-slot-api.service';
-import {PaymentApiService} from '../../services/payment-api.service';
-import {ReservationApiService} from '../../services/reservation-api.service';
-import {loadStripe} from '@stripe/stripe-js';
+import { ActivatedRoute, Route } from '@angular/router';
+import { Service } from '../../../services/model/service.entity';
+import { Worker } from '../../../dashboard/models/worker.entity';
+import { AppointmentApiService } from '../../services/appointment-api-service.service';
+import { AppointmentAssembler } from '../../services/appointment.assembler';
+import { AppointmentResponse } from '../../services/appointment.response';
+import { TimeSlotApiService } from '../../services/time-slot-api.service';
+import { PaymentApiService } from '../../services/payment-api.service';
+import { ReservationApiService } from '../../services/reservation-api.service';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-week-calendar',
@@ -41,7 +41,7 @@ export class WeekCalendarComponent implements OnInit {
   };
 
   private appointments: ClientAppointment[] = [];
-  private api   = inject(AppointmentApiService);
+  private api = inject(AppointmentApiService);
   private route = inject(ActivatedRoute);
 
   private timeSlotApi = inject(TimeSlotApiService);
@@ -61,7 +61,7 @@ export class WeekCalendarComponent implements OnInit {
       const events: EventInput[] = this.appointments.map(a => ({
         title: `${a.workerId.specialization} - cliente ${a.clientId}`,
         start: a.timeSlot.startTime,
-        end:   a.timeSlot.endTime,
+        end: a.timeSlot.endTime,
         extendedProps: { appointmentId: a.id }
       }));
 
@@ -97,7 +97,7 @@ export class WeekCalendarComponent implements OnInit {
       return localISOTime;
     }
     const startIsoLocal = toLocalISOString(start);
-    const endIsoLocal   = toLocalISOString(end);
+    const endIsoLocal = toLocalISOString(end);
 
     // 👉 Paso 1: Crear TimeSlot
     this.timeSlotApi.post({
@@ -109,28 +109,35 @@ export class WeekCalendarComponent implements OnInit {
     }).subscribe(timeSlot => {
 
       // 👉 Paso 2: Crear Payment
-      this.paymentApi.post({
-        id: 0,
-        amount: this.service.price,
-        currency: 'USD',
-        status: false
-      }).subscribe(payment => {
+      const paymentPayload = {
+        totalAmount: {
+          amount: this.service.price,
+          currency: 'USD'
+        },
+        status: 'AUTHORIZED'
+      };
 
-        // 👉 Paso 3: Crear la Reservation
-        this.reservationApi.post({
-          clientId,
-          providerId,
-          paymentId: payment.id,
-          timeSlotId: timeSlot.id,
-          workerId
-        }).subscribe({
-          next: () => { alert('✅ Cita reservada'); this.loadAppointments();
-            window.location.href = 'https://buy.stripe.com/test_eVq00l2Dz6EJ4iN2Wz5os00';},
+      this.paymentApi.post(paymentPayload as any).subscribe({
+        next: (payment: any) => {
 
-          error: e => alert('❌ Error en reserva: ' + e.message)
-        });
+          // 👉 Paso 3: Crear la Reservation
+          this.reservationApi.post({
+            clientId,
+            providerId,
+            paymentId: payment.Id, // Note: Capital 'I' based on API response
+            timeSlotId: timeSlot.id,
+            workerId
+          }).subscribe({
+            next: () => {
+              alert('✅ Cita reservada'); this.loadAppointments();
+              window.location.href = 'https://buy.stripe.com/test_eVq00l2Dz6EJ4iN2Wz5os00';
+            },
 
-      }, err => alert('❌ Error en pago: ' + err.message));
+            error: e => alert('❌ Error en reserva: ' + e.message)
+          });
+
+        }, error: err => alert('❌ Error en pago: ' + err.message)
+      });
 
     }, err => alert('❌ Error en horario: ' + err.message));
 

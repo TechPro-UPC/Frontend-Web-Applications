@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Psychologist } from '../../../profile/models/psychologist.entity';
 import { PsychologistApiService } from '../../../profile/services/psychologist-api.service';
@@ -16,7 +17,7 @@ export class PsychologistListComponent implements OnInit {
     psychologists: Psychologist[] = [];
     @Output() psychologistSelected = new EventEmitter<Psychologist>();
 
-    constructor(private psychologistService: PsychologistApiService) { }
+    constructor(private psychologistService: PsychologistApiService, private router: Router) { }
 
     ngOnInit(): void {
         this.psychologistService.getAll().pipe(
@@ -30,6 +31,6 @@ export class PsychologistListComponent implements OnInit {
     }
 
     selectPsychologist(psychologist: Psychologist): void {
-        this.psychologistSelected.emit(psychologist);
+        this.router.navigate(['/client/schedule-reservation', psychologist.id]);
     }
 }

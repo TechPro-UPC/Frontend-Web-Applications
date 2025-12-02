@@ -1,6 +1,8 @@
 export interface PaymentResponse {
-  id: number;
-  amount: number;
-  currency: string;
-  status: boolean;
+  Id: number;
+  totalAmount: {
+    amount: number;
+    currency: string;
+  };
+  status: string;
 }

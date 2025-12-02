@@ -50,6 +50,7 @@ export class LoginFormComponent {
     this.accountApiService.signIn({ email, password }).subscribe({
       next: authResponse => {
         this.accountApiService.saveToken(authResponse.token);
+        localStorage.setItem('clientId', authResponse.id.toString());
         console.log('🔍 Auth Response:', authResponse);
 
         // Fetch full user details to get the role
