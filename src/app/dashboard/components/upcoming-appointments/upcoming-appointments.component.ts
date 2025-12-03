@@ -35,10 +35,10 @@ export class UpcomingAppointmentsComponent implements OnInit {
   ngOnInit(): void {
     this.appointmentService.getReservationsDetails().pipe(
       switchMap((reservations: Reservation[]) => {
-        if (this.isClient) {
-          const userId = Number(localStorage.getItem('clientId'));
+        const userId = Number(localStorage.getItem('clientId'));
 
-          // Fetch all patients to find the one matching the userId
+        if (this.isClient) {
+          // Client View: Filter by Patient ID
           return this.patientApiService.getAll().pipe(
             map(patients => {
               const patient = patients.find(p => p.userId === userId);
@@ -53,8 +53,23 @@ export class UpcomingAppointmentsComponent implements OnInit {
               return of([]);
             })
           );
+        } else {
+          // Psychologist View: Filter by Psychologist ID
+          return this.psychologistService.getAll().pipe(
+            map(psychologists => {
+              const psychologist = psychologists.find(p => p.userId === userId);
+              if (psychologist) {
+                return reservations.filter(r => r.psycologistId === psychologist.id);
+              } else {
+                return [];
+              }
+            }),
+            catchError(err => {
+              console.error('Error fetching psychologists:', err);
+              return of([]);
+            })
+          );
         }
-        return of(reservations);
       }),
       switchMap((filteredReservations: Reservation[]) => {
         if (filteredReservations.length === 0) {
@@ -65,10 +80,11 @@ export class UpcomingAppointmentsComponent implements OnInit {
         const detailsObservables = filteredReservations.map(reservation => {
           return forkJoin({
             psychologist: this.psychologistService.getById(reservation.psycologistId).pipe(catchError(e => { console.error('Error fetching psychologist', e); return of(null); })),
+            patient: !this.isClient ? this.patientApiService.getById(reservation.patientId).pipe(catchError(e => { console.error('Error fetching patient', e); return of(null); })) : of(null),
             timeSlot: this.timeSlotService.getById(reservation.timeSlotId).pipe(catchError(e => { console.error('Error fetching timeSlot', e); return of(null); })),
             payment: this.paymentService.getById(reservation.paymentId).pipe(catchError(e => { console.error('Error fetching payment', e); return of(null); }))
           }).pipe(
-            map(({ psychologist, timeSlot, payment }) => {
+            map(({ psychologist, patient, timeSlot, payment }) => {
               if (!psychologist || !timeSlot) {
                 return null;
               }
@@ -83,11 +99,21 @@ export class UpcomingAppointmentsComponent implements OnInit {
                 name: `${psychologist.firstName} ${psychologist.lastName}`,
                 companyName: 'MindBridge' // Default or fetch if available
               };
-              appointment.workerId = {
-                id: psychologist.id,
-                name: `${psychologist.firstName} ${psychologist.lastName}`,
-                specialization: psychologist.specialization
-              };
+
+              // If Psychologist view, show Patient Name. Else show Psychologist Name.
+              if (!this.isClient && patient) {
+                appointment.workerId = {
+                  id: patient.id,
+                  name: `${patient.firstName} ${patient.lastName}`,
+                  specialization: psychologist.specialization // Keep specialization or change? User asked for patient data.
+                };
+              } else {
+                appointment.workerId = {
+                  id: psychologist.id,
+                  name: `${psychologist.firstName} ${psychologist.lastName}`,
+                  specialization: psychologist.specialization
+                };
+              }
 
               // Map TimeSlot
               appointment.timeSlot = {

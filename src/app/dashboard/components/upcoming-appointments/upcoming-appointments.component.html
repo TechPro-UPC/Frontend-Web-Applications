@@ -19,7 +19,7 @@
       </div>
 
       <div class="row">
-        <span class="label">Psicólogo:</span>
+        <span class="label">{{ isClient ? 'Psicólogo:' : 'Paciente:' }}</span>
         <span class="value">{{ appointment.workerId.name }}</span>
       </div>
 
