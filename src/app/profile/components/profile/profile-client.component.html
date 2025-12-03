@@ -4,96 +4,39 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
     <h1>{{'client.profile.profile' | translate}} <span>💼</span></h1>
-    <button mat-icon-button class="edit-profile-btn" aria-label="edit button">
-      <mat-icon>edit</mat-icon>
-    </button>
   </div>
 
   <div class="profile-card" *ngIf="!isLoading">
     <section class="section">
       <h2>👤 {{'client.profile.personal' | translate}} </h2>
-      <form [formGroup]="profileForm" class="profile-form" aria-label="edit profile form" >
-        <mat-form-field appearance="outline">
-          <mat-label>{{'client.profile.name' | translate}} </mat-label>
-          <input matInput formControlName="name" aria-label="name input" >
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>{{'client.profile.email' | translate}} </mat-label>
-          <input matInput formControlName="email" aria-label="email input">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>{{'client.profile.phone' | translate}} </mat-label>
-          <input matInput formControlName="phoneNumber" aria-label="phone number input">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>{{'client.profile.identity' | translate}} </mat-label>
-          <input matInput formControlName="identityDocument" aria-label="identityDocument input">
-        </mat-form-field>
-
-        <div class="toggles">
-          <mat-slide-toggle formControlName="notifications" aria-label="notification slide toggle">
-            <mat-icon>notifications</mat-icon> {{'client.profile.notifications' | translate}}
-          </mat-slide-toggle>
-          <mat-slide-toggle formControlName="location" aria-label="location slide toggle">
-            <mat-icon>location_on</mat-icon> {{'client.profile.location' | translate}}
-          </mat-slide-toggle>
+      <div class="profile-details">
+        <div class="detail-item">
+          <span class="label">{{'client.profile.name' | translate}}:</span>
+          <span class="value">{{ profile.name }}</span>
         </div>
-      </form>
-    </section>
 
-    <section class="section">
-      <h2>🔐{{'client.profile.password' | translate}} </h2>
-      <form [formGroup]="passwordForm" aria-label="change password form" >
-        <div class="password-change">
-          <ng-container *ngIf="!showCurrentPasswordField">
-            <div class="password-hidden">
-              ***********
-              <button mat-stroked-button aria-label="edit button" color="primary" (click)="showCurrentPasswordField = true">
-                <mat-icon>edit</mat-icon> {{'client.profile.change' | translate}}
-              </button>
-            </div>
-          </ng-container>
-
-          <ng-container *ngIf="showCurrentPasswordField">
-            <mat-form-field appearance="outline">
-              <mat-label>Current Password</mat-label>
-              <input matInput type="password" formControlName="currentPassword">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>New Password</mat-label>
-              <input matInput type="password" formControlName="newPassword" aria-label="new password input">
-              <mat-error *ngIf="passwordForm.get('newPassword')?.hasError('minlength')">
-                Password must be at least 8 characters
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Confirm Password</mat-label>
-              <input matInput type="password" formControlName="confirmPassword" aria-label="confirm password input">
-              <mat-error *ngIf="!passwordsMatch">
-                Passwords do not match
-              </mat-error>
-            </mat-form-field>
-
-            <div class="save-actions">
-              <button mat-raised-button color="primary" [disabled]="passwordForm.invalid" (click)="changePassword()" aria-label="save button">
-                <mat-icon>save</mat-icon> Save
-              </button>
-            </div>
-          </ng-container>
+        <div class="detail-item">
+          <span class="label">{{'client.profile.email' | translate}}:</span>
+          <span class="value">{{ profile.email }}</span>
         </div>
-      </form>
+
+        <div class="detail-item">
+          <span class="label">{{'client.profile.phone' | translate}}:</span>
+          <span class="value">{{ profile.phoneNumber }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="label">{{'client.profile.identity' | translate}}:</span>
+          <span class="value">{{ profile.identityDocument }}</span>
+        </div>
+      </div>
     </section>
 
     <!-- Quejas y Reclamos -->
     <section class="section">
       <h2> {{ 'client.profile.complaints' | translate }}</h2>
-      Futuro: botón para FAQ y generación de reclamos
-      <button mat-stroked-button color="primary" routerLink="/soporte/quejas-reclamos" aria-label="ir a quejas y reclamos">
+      <button mat-stroked-button color="primary" routerLink="/soporte/quejas-reclamos"
+        aria-label="ir a quejas y reclamos">
         <mat-icon>help_center</mat-icon>
         Preguntas frecuentes y reclamos
       </button>
@@ -105,9 +48,7 @@
         <button mat-stroked-button color="warn" (click)="logout()" aria-label="log out button">
           <mat-icon>logout</mat-icon> {{'client.profile.logOut' | translate}}
         </button>
-        <button mat-flat-button color="warn" (click)="deleteAccount()" aria-label="erase account button">
-          <mat-icon>delete_forever</mat-icon> {{'client.profile.delete' | translate}}
-        </button>
+
       </div>
     </section>
   </div>
