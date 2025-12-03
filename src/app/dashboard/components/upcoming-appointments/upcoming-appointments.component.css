@@ -73,6 +73,7 @@
   display: flex;
   gap: 10px;
   font-size: 1rem;
+  align-items: center;
 }
 
 .label {
@@ -83,4 +84,35 @@
 
 .value {
   color: #555;
+}
+
+/* Export PDF Button Styles */
+.export-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #4a8cff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.export-btn:hover {
+  background-color: #3a7ce0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 140, 255, 0.3);
+}
+
+.export-btn:active {
+  transform: translateY(0);
+}
+
+.export-btn .material-icons {
+  font-size: 1.2rem;
 }

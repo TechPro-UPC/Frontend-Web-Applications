@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -11,6 +11,7 @@ import { TimeSlotApiService } from '../../../appointments/services/time-slot-api
 import { PaymentApiService } from '../../../appointments/services/payment-api.service';
 import { Reservation } from '../../../schedule/models/reservation.entity';
 import { forkJoin, map, switchMap, catchError, of } from 'rxjs';
+import jsPDF from 'jspdf';
 
 
 @Component({
@@ -175,5 +176,62 @@ export class UpcomingAppointmentsComponent implements OnInit {
     const today = new Date();
     const date = new Date(dateStr);
     return today.toDateString() === date.toDateString();
+  }
+
+  exportToPDF(appointment: ClientAppointment): void {
+    const doc = new jsPDF();
+
+    // Header
+    doc.setFontSize(22);
+    doc.setTextColor(40, 116, 240);
+    doc.text('MindBridge', 105, 20, { align: 'center' });
+
+    doc.setFontSize(16);
+    doc.setTextColor(0, 0, 0);
+    doc.text('Session Report', 105, 35, { align: 'center' });
+
+    // Line separator
+    doc.setDrawColor(200, 200, 200);
+    doc.line(20, 42, 190, 42);
+
+    // Patient Information
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Patient Information:', 20, 55);
+
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Patient Name: ${appointment.workerId.name}`, 20, 65);
+    doc.text(`Service: ${appointment.workerId.specialization}`, 20, 73);
+
+    // Session Details
+    doc.setFont('helvetica', 'bold');
+    doc.text('Session Details:', 20, 90);
+
+    doc.setFont('helvetica', 'normal');
+    const startDate = new Date(appointment.timeSlot.startTime);
+    const endDate = new Date(appointment.timeSlot.endTime);
+
+    doc.text(`Date: ${startDate.toLocaleDateString()}`, 20, 100);
+    doc.text(`Start Time: ${startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`, 20, 108);
+    doc.text(`End Time: ${endDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`, 20, 116);
+    doc.text(`Payment Status: ${appointment.paymentId.status ? 'Paid' : 'Pending'}`, 20, 124);
+
+    // Description
+    doc.setFont('helvetica', 'bold');
+    doc.text('Session Description:', 20, 140);
+
+    doc.setFont('helvetica', 'normal');
+    const description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+    const splitDescription = doc.splitTextToSize(description, 170);
+    doc.text(splitDescription, 20, 150);
+
+    // Footer
+    doc.setFontSize(10);
+    doc.setTextColor(128, 128, 128);
+    doc.text(`Generated: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`, 105, 280, { align: 'center' });
+
+    // Save PDF
+    const fileName = `session-${appointment.workerId.name.replace(/\s+/g, '-')}-${startDate.toISOString().split('T')[0]}.pdf`;
+    doc.save(fileName);
   }
 }

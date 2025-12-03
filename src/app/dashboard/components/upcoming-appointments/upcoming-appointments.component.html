@@ -34,6 +34,14 @@
           {{ appointment.paymentId.status ? 'Pagado' : 'No pagado' }}
         </span>
       </div>
+
+      <!-- Export PDF Button for Psychologists -->
+      <div class="row" *ngIf="!isClient">
+        <button class="export-btn" (click)="exportToPDF(appointment)" aria-label="Export to PDF">
+          <span class="material-icons">picture_as_pdf</span>
+          Exportar PDF
+        </button>
+      </div>
     </div>
   </div>
   }
