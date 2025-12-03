@@ -104,7 +104,7 @@ export class UpcomingAppointmentsComponent implements OnInit {
                   id: payment.Id,
                   amount: payment.totalAmount.amount,
                   currency: payment.totalAmount.currency,
-                  status: payment.status === 'PAID'
+                  status: payment.status === 'AUTHORIZED' || payment.status === 'DONE'
                 };
               } else {
                 appointment.paymentId = {
