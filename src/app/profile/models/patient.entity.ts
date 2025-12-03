@@ -5,7 +5,7 @@ export class Patient {
     dni: string;
     phone: string;
     gender: string;
-    user: { id: number };
+    userId: number;
 
     constructor() {
         this.id = 0;
@@ -14,6 +14,6 @@ export class Patient {
         this.dni = '';
         this.phone = '';
         this.gender = '';
-        this.user = { id: 0 };
+        this.userId = 0;
     }
 }

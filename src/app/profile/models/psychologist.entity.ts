@@ -7,7 +7,7 @@ export class Psychologist {
     gender: string;
     licenseNumber: string;
     specialization: string;
-    user: { id: number };
+    userId: number;
 
     constructor() {
         this.id = 0;
@@ -18,6 +18,6 @@ export class Psychologist {
         this.gender = '';
         this.licenseNumber = '';
         this.specialization = '';
-        this.user = { id: 0 };
+        this.userId = 0;
     }
 }

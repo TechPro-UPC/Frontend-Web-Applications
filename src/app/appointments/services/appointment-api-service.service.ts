@@ -4,11 +4,17 @@ import { AppointmentResponse } from './appointment.response';
 import { ClientAppointment } from '../model/appointment.entity';
 import { AppointmentAssembler } from './appointment.assembler';
 import { Observable, map, of, catchError } from 'rxjs';
+import { Reservation } from '../../schedule/models/reservation.entity';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AppointmentApiService extends BaseService<AppointmentResponse> {
   override resourceEndpoint = '/reservationsDetails';
+
+  public getReservationsDetails(): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(this.resourcePath());
+  }
 
   constructor() {
     super();

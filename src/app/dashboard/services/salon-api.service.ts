@@ -10,8 +10,8 @@ import { catchError, of } from 'rxjs';
 })
 export class SalonApiService extends BaseService<ProviderProfileResource> {
   private baseUrl = environment.serverBaseUrl;
-  private detailsEndpoint = "/provider-profiles";
-  override resourceEndpoint = '/provider-profiles';
+  private detailsEndpoint = "/profiles/salons";
+  override resourceEndpoint = '/profiles/salons';
 
   constructor() {
     super();
