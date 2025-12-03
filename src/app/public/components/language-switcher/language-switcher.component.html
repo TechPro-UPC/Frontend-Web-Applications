@@ -1,13 +1,15 @@
 <!-- Botón principal -->
-<button mat-button [matMenuTriggerFor]="menu" class="color-language" >
-  <img [src]="getLanguage()?.flag" width="20" height="14" class="flag" />
+<button mat-button [matMenuTriggerFor]="menu" class="color-language">
+
   <span class="label">
     <ng-container [ngSwitch]="currentLang">
       <span *ngSwitchCase="'en'" class="color-language">
-        <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" width="20" height="14" class="flag" />
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" width="20" height="14"
+          class="flag" />
         English</span>
       <span *ngSwitchCase="'es'" class="color-language">
-        <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" width="20" height="14" class="flag" />
+        <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" width="20" height="14"
+          class="flag" />
         Spanish</span>
     </ng-container>
   </span>
@@ -20,11 +22,13 @@
     <span class="label">
       <ng-container [ngSwitch]="lang.label">
         <span *ngSwitchCase="'en'" class="color-language">
-          <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" width="20" height="14" class="flag" />
+          <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" width="20" height="14"
+            class="flag" />
           English
         </span>
         <span *ngSwitchCase="'es'" class="color-language">
-          <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" width="20" height="14" class="flag" />
+          <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" width="20" height="14"
+            class="flag" />
           Spanish
         </span>
       </ng-container>
