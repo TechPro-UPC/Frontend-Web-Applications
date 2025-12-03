@@ -1,7 +1,7 @@
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
-import {inject} from '@angular/core';
-import {catchError, Observable, retry, throwError} from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { inject } from '@angular/core';
+import { catchError, Observable, retry, throwError } from 'rxjs';
 
 export abstract class BaseService<R> {
   protected httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
@@ -10,7 +10,10 @@ export abstract class BaseService<R> {
   protected http: HttpClient = inject(HttpClient);
 
   protected handleError(error: HttpErrorResponse) {
-    console.error(error);
+    console.error('An error occurred:', error);
+    if (error.error) {
+      console.error('Backend error body:', JSON.stringify(error.error));
+    }
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
@@ -49,12 +52,12 @@ export abstract class BaseService<R> {
 
   public update(id: any, resource: R): Observable<R> {
     return this.http.put<R>(`${this.resourcePath()}/${id}`, JSON.stringify(resource), this.httpOptions)
-        .pipe(retry(2), catchError(this.handleError));
+      .pipe(retry(2), catchError(this.handleError));
   }
 
   public partialUpdate(id: any, partialResource: Partial<R>): Observable<R> {
     return this.http.patch<R>(`${this.resourcePath()}/${id}`, JSON.stringify(partialResource), this.httpOptions)
-        .pipe(retry(2), catchError(this.handleError));
+      .pipe(retry(2), catchError(this.handleError));
   }
 
 }

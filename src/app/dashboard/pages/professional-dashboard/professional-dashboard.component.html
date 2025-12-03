@@ -1,19 +1,8 @@
 <h1>{{ 'dashboard.hey' | translate }} Mind Bridge, {{ 'dashboard.letsWork' | translate }}</h1>
 
 <div class="dashboard-grid">
-  <!-- COLUMNA IZQUIERDA: Appointments + Staff -->
+  <!-- COLUMNA IZQUIERDA: Empty now -->
   <div class="main-column" aria-label="salon-grid">
-    <mat-card class="mat-elevation-z2" >
-      <mat-card-content>
-        <app-upcoming-appointments></app-upcoming-appointments>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="mat-elevation-z2 staff-section">
-      <mat-card-content>
-        <app-staff-list [WorkerList]="worker"></app-staff-list>
-      </mat-card-content>
-    </mat-card>
   </div>
 
   <!-- COLUMNA DERECHA: Reviews -->

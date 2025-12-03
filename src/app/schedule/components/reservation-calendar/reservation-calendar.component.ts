@@ -10,6 +10,7 @@ import { AppointmentApiService } from '../../../appointments/services/appointmen
 import { AppointmentAssembler } from '../../../appointments/services/appointment.assembler';
 import { PaymentApiService } from '../../../appointments/services/payment-api.service';
 import { PatientApiService } from '../../../profile/services/patient-api.service';
+import { PsychologistApiService } from '../../../profile/services/psychologist-api.service';
 
 @Component({
     selector: 'app-reservation-calendar',
@@ -36,11 +37,65 @@ export class ReservationCalendarComponent implements OnInit {
     private appointmentApi = inject(AppointmentApiService);
     private paymentApi = inject(PaymentApiService);
     private router = inject(Router);
+    private psychologistApi = inject(PsychologistApiService);
 
     private patientApi = inject(PatientApiService);
 
+    private psychologistSpecialization: string = '';
+
+    timeSlots: any[] = [];
+
     ngOnInit(): void {
         this.loadAppointments();
+        this.loadPsychologistDetails();
+        this.loadTimeSlots();
+    }
+
+    private loadPsychologistDetails(): void {
+        if (!this.psychologistId) return;
+        this.psychologistApi.getById(this.psychologistId).subscribe({
+            next: (psychologist) => {
+                console.log('Psychologist details fetched:', psychologist);
+                this.psychologistSpecialization = psychologist.specialization;
+            },
+            error: (err) => console.error('Error fetching psychologist details:', err)
+        });
+    }
+
+    private loadTimeSlots(): void {
+        this.timeSlotApi.getAll().subscribe({
+            next: (slots: any[]) => {
+                console.log('All TimeSlots (raw):', slots);
+                if (slots.length > 0) {
+                    console.log('First TimeSlot structure:', slots[0]);
+                    console.log('Current Psychologist ID:', this.psychologistId);
+                }
+
+                // TEMPORARY: Remove filter to debug rendering
+                // this.timeSlots = slots.filter(s => s.psychologistId === this.psychologistId && !s.isReserved);
+                this.timeSlots = slots;
+
+                const events: EventInput[] = this.timeSlots.map(s => ({
+                    title: 'Available',
+                    start: s.startTime,
+                    end: s.endTime,
+                    display: 'background',
+                    color: '#00cc00' // Green for available
+                }));
+
+                console.log('Generated Events:', events);
+
+                // Merge with existing events (appointments)
+                this.calendarOptions = {
+                    ...this.calendarOptions,
+                    events: [
+                        ...(this.calendarOptions.events as EventInput[] || []).filter(e => e.display !== 'background'), // Remove old background events
+                        ...events
+                    ]
+                };
+            },
+            error: (err) => console.error('Error fetching TimeSlots:', err)
+        });
     }
 
     private loadAppointments(): void {
@@ -50,20 +105,80 @@ export class ReservationCalendarComponent implements OnInit {
             const appointments = AppointmentAssembler.toEntitiesFromResponse(res)
                 .filter(a => a.provider.id === this.psychologistId);
 
-            const events: EventInput[] = appointments.map(a => ({
+            const appointmentEvents: EventInput[] = appointments.map(a => ({
                 title: 'Occupied',
                 start: a.timeSlot.startTime,
                 end: a.timeSlot.endTime,
                 color: '#ff9f89' // Visual indication of occupied slots
             }));
 
-            this.calendarOptions = { ...this.calendarOptions, events };
+            this.calendarOptions = {
+                ...this.calendarOptions,
+                events: [
+                    ...(this.calendarOptions.events as EventInput[] || []).filter(e => e.display === 'background'),
+                    ...appointmentEvents
+                ]
+            };
         });
     }
 
     private handleDateSelect(sel: any): void {
         const start = new Date(sel.start);
         const end = new Date(sel.end);
+
+        console.log('Selection Start:', start.toISOString());
+        console.log('Selection End:', end.toISOString());
+
+        // Prevent booking in the past
+        const now = new Date();
+        if (start < now) {
+            alert('Cannot create a reservation in the past. Please select a future date.');
+            return;
+        }
+
+        // Check if there is a matching TimeSlot
+        const matchingSlot = this.timeSlots.find(s => {
+            const slotStart = new Date(s.startTime);
+            const slotEnd = new Date(s.endTime);
+
+            const startDiff = Math.abs(slotStart.getTime() - start.getTime());
+            const endDiff = Math.abs(slotEnd.getTime() - end.getTime());
+
+            // Check if start time matches (within 1 second)
+            const startMatches = startDiff < 1000;
+
+            if (startMatches) {
+                console.log(`Found potential match slot ${s.id}:`);
+                console.log(`  Slot Start: ${slotStart.toISOString()}`);
+                console.log(`  Sel Start : ${start.toISOString()}`);
+                console.log(`  Slot End  : ${slotEnd.toISOString()}`);
+                console.log(`  Sel End   : ${end.toISOString()}`);
+                console.log(`  Start Diff: ${startDiff}ms`);
+                console.log(`  End Diff  : ${endDiff}ms`);
+
+                if (endDiff >= 1000) {
+                    console.warn(`Slot ${s.id} end time mismatch. Ignoring end time for match.`);
+                }
+                return true;
+            }
+
+            return false;
+        });
+
+        if (!matchingSlot) {
+            console.error('❌ NO MATCHING SLOT FOUND');
+            console.error('Selection details:');
+            console.error('  Start:', start.toISOString());
+            console.error('  End:', end.toISOString());
+            console.error('Available timeSlots count:', this.timeSlots.length);
+            console.error('All timeSlots:', this.timeSlots.map(s => ({
+                id: s.id,
+                start: new Date(s.startTime).toISOString(),
+                end: new Date(s.endTime).toISOString()
+            })));
+            alert('Please select an available (green) time slot.');
+            return;
+        }
 
         if (!confirm(`Book reservation from ${start.toLocaleTimeString()} to ${end.toLocaleTimeString()}?`)) return;
 
@@ -73,21 +188,11 @@ export class ReservationCalendarComponent implements OnInit {
         this.patientApi.getAll().subscribe({
             next: (patients: any[]) => {
                 console.log('All patients fetched from API:', patients);
-                if (patients.length > 0) {
-                    console.log('First patient raw JSON:', JSON.stringify(patients[0]));
-                }
 
-                // Try to find patient by matching userId in various possible fields
                 const patient = patients.find(p => {
-                    // Check for nested user object
                     if (p.user && p.user.id === userId) return true;
-
-                    // Check for flat userId property (camelCase)
                     if ((p as any).userId === userId) return true;
-
-                    // Check for flat user_id property (snake_case)
                     if ((p as any).user_id === userId) return true;
-
                     return false;
                 });
 
@@ -98,69 +203,48 @@ export class ReservationCalendarComponent implements OnInit {
 
                 const patientId = patient.id;
 
-                // Helper to format date to ISO string without timezone conversion issues for local time
-                const toLocalISOString = (date: Date): string => {
-                    const offsetMs = date.getTimezoneOffset() * 60000;
-                    return new Date(date.getTime() - offsetMs).toISOString();
+                // Use existing TimeSlot ID
+                console.log('Using existing TimeSlot:', matchingSlot);
+
+                // 2. Create Payment
+                const paymentPayload = {
+                    totalAmount: {
+                        amount: 100,
+                        currency: 'USD'
+                    },
+                    status: 'AUTHORIZED'
                 };
+                console.log('Sending Payment Payload:', paymentPayload);
 
-                const startTime = toLocalISOString(start);
-                const endTime = toLocalISOString(end);
+                this.paymentApi.post(paymentPayload as any).subscribe({
+                    next: (payment: any) => {
+                        console.log('Payment created:', payment);
 
-                // 1. Create TimeSlot
-                this.timeSlotApi.post({
-                    id: 0,
-                    startTime: startTime,
-                    endTime: endTime,
-                    psychologistId: this.psychologistId
-                } as any).subscribe({
-                    next: (timeSlot: any) => {
-                        console.log('TimeSlot created:', timeSlot);
-
-                        // 2. Create Payment
-                        const paymentPayload = {
-                            totalAmount: {
-                                amount: 100,
-                                currency: 'USD'
-                            },
-                            status: 'AUTHORIZED'
+                        // 3. Create Reservation
+                        const reservationPayload = {
+                            patientId: patientId,
+                            psychologistId: this.psychologistId,
+                            timeSlotId: matchingSlot.id,
+                            paymentId: payment.Id
                         };
-                        console.log('Sending Payment Payload:', paymentPayload);
+                        console.log('Sending Reservation Payload:', reservationPayload);
 
-                        this.paymentApi.post(paymentPayload as any).subscribe({
-                            next: (payment: any) => {
-                                console.log('Payment created:', payment);
-
-                                // 3. Create Reservation
-                                const reservationPayload = {
-                                    patientId: patientId,
-                                    psycologistId: this.psychologistId,
-                                    timeSlotId: timeSlot.id,
-                                    paymentId: payment.Id // Note: Capital 'I' based on API response
-                                };
-                                console.log('Sending Reservation Payload:', reservationPayload);
-
-                                this.reservationApi.post(reservationPayload as any).subscribe({
-                                    next: () => {
-                                        alert('Reservation created successfully!');
-                                        this.loadAppointments(); // Refresh calendar
-                                        this.router.navigate(['/client/appointment']);
-                                    },
-                                    error: (err) => {
-                                        console.error('Error creating reservation:', err);
-                                        alert('Failed to create reservation.');
-                                    }
-                                });
+                        this.reservationApi.post(reservationPayload as any).subscribe({
+                            next: () => {
+                                alert('Reservation created successfully!');
+                                this.loadAppointments(); // Refresh calendar
+                                this.loadTimeSlots(); // Refresh slots
+                                this.router.navigate(['/client/appointment']);
                             },
                             error: (err) => {
-                                console.error('Error creating payment:', err);
-                                alert('Failed to create payment.');
+                                console.error('Error creating reservation:', err);
+                                alert('Failed to create reservation.');
                             }
                         });
                     },
                     error: (err) => {
-                        console.error('Error creating time slot:', err);
-                        alert('Failed to create time slot.');
+                        console.error('Error creating payment:', err);
+                        alert('Failed to create payment.');
                     }
                 });
             },

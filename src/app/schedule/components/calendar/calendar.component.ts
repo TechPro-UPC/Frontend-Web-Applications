@@ -49,24 +49,13 @@ export class CalendarComponent implements OnInit {
         if (psychologist) {
           this.currentPsychologistId = psychologist.id;
           this.schedulingService.getAllTimeSlots().subscribe(slots => {
-            console.log('DEBUG: All fetched slots:', slots);
-            console.log('DEBUG: Current Psychologist ID:', psychologist.id);
-            this.timeSlots = slots.filter(s => s.psychologistId === psychologist.id);
-            console.log('DEBUG: Filtered slots:', this.timeSlots);
+            this.timeSlots = slots;
           });
 
           this.schedulingService.getAllReservations().subscribe(res => {
-            this.reservations = res.filter(r => r.psycologistId === psychologist.id);
+            this.reservations = res;
           });
         }
-      });
-    } else {
-      this.schedulingService.getAllTimeSlots().subscribe(slots => {
-        this.timeSlots = slots;
-      });
-
-      this.schedulingService.getAllReservations().subscribe(res => {
-        this.reservations = res;
       });
     }
   }
@@ -124,10 +113,10 @@ export class CalendarComponent implements OnInit {
 
   createReservation(slot: TimeSlot): void {
     const newReservation = {
-      patientId: 10, // Hardcoded for now as per request context or mock
-      psycologistId: 4, // Mock
+      patientId: Number(localStorage.getItem('clientId')) || 0,
+      psychologistId: this.currentPsychologistId ?? 0,
       timeSlotId: slot.id,
-      paymentId: 10 // Mock
+      paymentId: 0 // mock payment id – replace with real logic when available
     };
 
     this.schedulingService.createReservation(newReservation).subscribe(created => {

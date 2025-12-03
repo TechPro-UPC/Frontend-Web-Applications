@@ -59,7 +59,7 @@ export class UpcomingAppointmentsComponent implements OnInit {
             map(psychologists => {
               const psychologist = psychologists.find(p => p.userId === userId);
               if (psychologist) {
-                return reservations.filter(r => r.psycologistId === psychologist.id);
+                return reservations.filter(r => r.psychologistId === psychologist.id);
               } else {
                 return [];
               }
@@ -79,7 +79,7 @@ export class UpcomingAppointmentsComponent implements OnInit {
         // Create an array of observables to fetch details for each reservation
         const detailsObservables = filteredReservations.map(reservation => {
           return forkJoin({
-            psychologist: this.psychologistService.getById(reservation.psycologistId).pipe(catchError(e => { console.error('Error fetching psychologist', e); return of(null); })),
+            psychologist: this.psychologistService.getById(reservation.psychologistId).pipe(catchError(e => { console.error('Error fetching psychologist', e); return of(null); })),
             patient: !this.isClient ? this.patientApiService.getById(reservation.patientId).pipe(catchError(e => { console.error('Error fetching patient', e); return of(null); })) : of(null),
             timeSlot: this.timeSlotService.getById(reservation.timeSlotId).pipe(catchError(e => { console.error('Error fetching timeSlot', e); return of(null); })),
             payment: this.paymentService.getById(reservation.paymentId).pipe(catchError(e => { console.error('Error fetching payment', e); return of(null); }))

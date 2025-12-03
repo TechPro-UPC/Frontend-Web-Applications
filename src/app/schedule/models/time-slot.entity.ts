@@ -3,6 +3,7 @@ export interface TimeSlot {
     startTime: string;
     endTime: string;
     psychologistId: number;
+    isReserved: boolean;
 }
 
 export interface CreateTimeSlotRequest {
