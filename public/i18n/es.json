@@ -29,6 +29,15 @@
     "accept": "Aceptar",
     "decline": "Rechazar"
   },
+  "support": {
+    "title": "Soporte",
+    "whatsapp": "WhatsApp",
+    "whatsappSubtitle": "Chat en tiempo real",
+    "email": "Email",
+    "emailSubtitle": "Envía tu consulta por correo",
+    "helpCenter": "Centro de Ayuda",
+    "helpCenterSubtitle": "Preguntas frecuentes"
+  },
   "legal": {
     "terms": {
       "title": "Términos y Condiciones",
