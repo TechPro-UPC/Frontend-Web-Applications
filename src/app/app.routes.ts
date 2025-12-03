@@ -14,7 +14,7 @@ import { ClientProfileComponent } from './profile/pages/client-profile/client-pr
 import { ClientDashboardComponent } from './dashboard/pages/client-dashboard/client-dashboard.component';
 import { SalonComponent } from './dashboard/pages/salon/salon.component';
 import { ReviewsTabComponent } from './reviews/pages/reviews-tab/reviews-tab.component';
-import { ServicesTabComponent } from './services/pages/services-tab/services-tab.component';
+
 import { SettingsPageComponent } from './providerSettings/pages/settings-page/settings-page.component';
 import { SubscriptionTabComponent } from './subscription/pages/subscription-tab/subscription-tab.component';
 import { AppointmentMakerComponent } from './appointments/pages/appointment-maker/appointment-maker.component';
@@ -42,7 +42,7 @@ export const routes: Routes = [
       { path: 'profile', component: ProfileSalonPageComponent },
       { path: 'schedule', component: SchedulePageComponent },
       { path: 'reviews', component: ReviewsTabComponent },
-      { path: 'services', component: ServicesTabComponent },
+
       { path: 'subscription', component: SubscriptionTabComponent },
       { path: 'settings', component: SettingsPageComponent },
       { path: 'notification', component: NotificationPageComponent }

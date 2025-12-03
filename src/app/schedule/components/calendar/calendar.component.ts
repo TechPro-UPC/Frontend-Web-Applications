@@ -49,7 +49,10 @@ export class CalendarComponent implements OnInit {
         if (psychologist) {
           this.currentPsychologistId = psychologist.id;
           this.schedulingService.getAllTimeSlots().subscribe(slots => {
+            console.log('DEBUG: All fetched slots:', slots);
+            console.log('DEBUG: Current Psychologist ID:', psychologist.id);
             this.timeSlots = slots.filter(s => s.psychologistId === psychologist.id);
+            console.log('DEBUG: Filtered slots:', this.timeSlots);
           });
 
           this.schedulingService.getAllReservations().subscribe(res => {
