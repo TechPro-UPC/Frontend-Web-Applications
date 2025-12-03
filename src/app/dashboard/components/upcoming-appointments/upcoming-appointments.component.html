@@ -2,34 +2,39 @@
   <h2>{{ 'dashboard.upcoming' | translate }}</h2>
 
   @for (appointment of upcomingAppointments; track appointment.id) {
-    <div class="appointment-card" aria-label="appointment-card" [ngClass]="{ 'past': !appointment.paymentId.status }">
-      <div class="left">
-        <div class="day">
-          <div>{{ formatDay(appointment.timeSlot.startTime) }}</div>
-          <div class="badge" *ngIf="isToday(appointment.timeSlot.startTime)">
-            {{ 'dashboard.today' | translate }}
-          </div>
-        </div>
-      </div>
-
-      <div class="right">
-        <div class="row">
-          <span class="label">Hora de inicio:</span>
-          <span class="value">{{ formatTime(appointment.timeSlot.startTime) }}</span>
-        </div>
-
-        <div class="row">
-          <span class="label">Servicio:</span>
-          <span class="value">{{ appointment.workerId.specialization }}</span>
-        </div>
-
-        <div class="row">
-          <span class="label">Estado:</span>
-          <span class="badge" [ngClass]="appointment.paymentId.status ? 'paid' : 'unpaid'">
-            {{ appointment.paymentId.status ? 'Pagado' : 'No pagado' }}
-          </span>
+  <div class="appointment-card" aria-label="appointment-card" [ngClass]="{ 'past': !appointment.paymentId.status }">
+    <div class="left">
+      <div class="day">
+        <div>{{ formatDay(appointment.timeSlot.startTime) }}</div>
+        <div class="badge" *ngIf="isToday(appointment.timeSlot.startTime)">
+          {{ 'dashboard.today' | translate }}
         </div>
       </div>
     </div>
+
+    <div class="right">
+      <div class="row">
+        <span class="label">Hora de inicio:</span>
+        <span class="value">{{ formatTime(appointment.timeSlot.startTime) }}</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Psicólogo:</span>
+        <span class="value">{{ appointment.workerId.name }}</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Servicio:</span>
+        <span class="value">{{ appointment.workerId.specialization }}</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Estado:</span>
+        <span class="badge" [ngClass]="appointment.paymentId.status ? 'paid' : 'unpaid'">
+          {{ appointment.paymentId.status ? 'Pagado' : 'No pagado' }}
+        </span>
+      </div>
+    </div>
+  </div>
   }
 </section>
