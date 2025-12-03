@@ -1,8 +1,9 @@
 <h1>{{ 'dashboard.hey' | translate }} Mind Bridge, {{ 'dashboard.letsWork' | translate }}</h1>
 
 <div class="dashboard-grid">
-  <!-- COLUMNA IZQUIERDA: Empty now -->
-  <div class="main-column" aria-label="salon-grid">
+  <!-- COLUMNA IZQUIERDA: Patient Reservations -->
+  <div class="main-column" aria-label="upcoming-appointments">
+    <app-upcoming-appointments [isClient]="false"></app-upcoming-appointments>
   </div>
 
   <!-- COLUMNA DERECHA: Reviews -->

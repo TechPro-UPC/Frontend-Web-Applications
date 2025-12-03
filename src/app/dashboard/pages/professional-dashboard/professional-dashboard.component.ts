@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Review } from '../../../reviews/models/review.entity';
 import { ReviewApiService } from '../../../reviews/services/review-api.service';
 import { ReviewListComponent } from '../../components/review-list/review-list.component';
+import { UpcomingAppointmentsComponent } from '../../components/upcoming-appointments/upcoming-appointments.component';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -9,6 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-professional-dashboard',
   imports: [
     ReviewListComponent,
+    UpcomingAppointmentsComponent,
     MatCard,
     MatCardContent,
     TranslatePipe
