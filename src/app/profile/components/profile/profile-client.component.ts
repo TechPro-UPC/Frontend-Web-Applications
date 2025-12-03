@@ -4,7 +4,7 @@ import { PatientApiService } from '../../../profile/services/patient-api.service
 import { AccountApiService } from '../../../iam/services/accountApi.service';
 import { Profile } from '../../models/profile.entity';
 import { MatIcon } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { NgIf } from '@angular/common';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
@@ -23,7 +23,8 @@ export class ProfileClientComponent implements OnInit {
 
   constructor(
     private profileService: PatientApiService,
-    private accountService: AccountApiService
+    private accountService: AccountApiService,
+    private router: Router
   ) {
     this.profile = new Profile();
   }
@@ -59,6 +60,7 @@ export class ProfileClientComponent implements OnInit {
 
   logout(): void {
     this.accountService.logout();
+    this.router.navigate(['/iam/login']);
   }
 
   deleteAccount(): void {

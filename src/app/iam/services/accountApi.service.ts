@@ -68,5 +68,6 @@ export class AccountApiService extends BaseService<AccountResponse> {
 
   public logout(): void {
     localStorage.removeItem('jwt_token');
+    localStorage.removeItem('clientId');
   }
 }
